@@ -1,0 +1,2544 @@
+<!doctype html>
+<!--
+  =====================================================================
+  SLS TRAVEL — Luxury Chauffeur Services
+  =====================================================================
+
+  ★ CAR IMAGES — HOW TO USE YOUR OWN PNGs ★
+  Each vehicle uses a placeholder image. To swap in your own transparent PNG:
+    1. Find the <img> tag inside each .vehicle-img block below
+    2. Replace the src URL with your PNG URL (can be hosted anywhere:
+       your own server, imgur.com, cloudinary, etc.)
+    3. Images look best on cream showroom bg when:
+       - They are transparent PNGs
+       - Side-angle car shots work best
+       - Minimum 800px wide
+
+  ★ WHATSAPP NUMBER ★
+  Replace "60123456789" everywhere with your actual WhatsApp number
+  (Malaysian format without + sign, e.g. 60123456789).
+
+  =====================================================================
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5" />
+<meta name="theme-color" content="#0A0A0A" />
+<title>SLS Travel — Langkawi Luxury Chauffeur Services</title>
+<meta name="description" content="Premium chauffeur services in Langkawi. Airport transfers (LGK), half-day & full-day island tours. Toyota Vios, Alphard, Vellfire and more.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700&family=Cinzel:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0A0A0A;
+  --surface: #141414;
+  --surface-2: #1C1C1C;
+  --surface-3: #242424;
+  --gold: #C9A961;
+  --gold-bright: #E8C77A;
+  --gold-dark: #8B7436;
+  --gold-soft: rgba(201, 169, 97, 0.12);
+  --ink: #F5F0E6;
+  --ink-dim: #C4BDAD;
+  --muted: #888888;
+  --line: #2A2A2A;
+  --line-gold: rgba(201, 169, 97, 0.25);
+  --cream-1: #F2EAD5;
+  --cream-2: #D4C7A5;
+  --radius-sm: 8px;
+  --radius: 14px;
+  --radius-lg: 22px;
+  --shadow-gold: 0 20px 60px rgba(201, 169, 97, 0.15);
+  --container: 1240px;
+  --serif: 'Playfair Display', Georgia, serif;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --deco: 'Cinzel', serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+*::selection { background: var(--gold); color: #0A0A0A; }
+html { scroll-behavior: smooth; scroll-padding-top: 80px; -webkit-tap-highlight-color: transparent; }
+body {
+  font-family: var(--sans);
+  color: var(--ink);
+  background: var(--bg);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  background-image:
+    radial-gradient(circle at 20% 10%, rgba(201, 169, 97, 0.06), transparent 50%),
+    radial-gradient(circle at 80% 90%, rgba(201, 169, 97, 0.04), transparent 50%);
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+.container { max-width: var(--container); margin: 0 auto; padding: 0 28px; }
+
+.scroll-progress {
+  position: fixed; top: 0; left: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold), var(--gold-bright));
+  z-index: 200;
+  width: 0%;
+  transition: width 0.1s ease;
+  box-shadow: 0 0 10px rgba(201, 169, 97, 0.5);
+}
+
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  pointer-events: none; z-index: 1;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.eyebrow {
+  font-family: var(--deco);
+  font-size: 11px; font-weight: 500;
+  letter-spacing: 0.35em;
+  color: var(--gold);
+  text-transform: uppercase;
+  display: inline-block;
+}
+.gold { color: var(--gold); }
+
+/* NAV */
+.nav {
+  position: sticky; top: 0; z-index: 90;
+  background: rgba(10, 10, 10, 0.82);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border-bottom: 1px solid var(--line);
+  transition: padding 0.3s ease;
+}
+.nav.scrolled { border-bottom-color: var(--line-gold); }
+.nav-inner { display: flex; align-items: center; justify-content: space-between; padding: 20px 0; }
+.logo {
+  font-family: var(--deco);
+  font-weight: 700; font-size: 20px;
+  letter-spacing: 0.18em;
+  cursor: pointer; color: var(--ink);
+  display: flex; align-items: center; gap: 10px;
+}
+.logo-mark {
+  width: 34px; height: 34px;
+  border: 1.5px solid var(--gold);
+  border-radius: 50%;
+  display: grid; place-items: center;
+  color: var(--gold);
+  font-family: var(--serif);
+  font-size: 14px; font-weight: 700;
+  position: relative;
+  transition: transform 0.5s;
+}
+.logo:hover .logo-mark { transform: rotate(360deg); }
+.logo-mark::before {
+  content: ''; position: absolute; inset: 3px;
+  border: 0.5px solid var(--gold);
+  border-radius: 50%;
+  opacity: 0.5;
+}
+.logo span.dot { color: var(--gold); }
+.nav-links { display: flex; gap: 36px; list-style: none; }
+.nav-links a {
+  font-size: 12px; font-weight: 500;
+  color: var(--ink-dim);
+  transition: color 0.3s;
+  position: relative;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.nav-links a:hover, .nav-links a.active { color: var(--gold); }
+.nav-links a.active::after {
+  content: ''; position: absolute; bottom: -8px; left: 50%;
+  transform: translateX(-50%);
+  width: 4px; height: 4px; background: var(--gold);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--gold);
+}
+.nav-actions { display: flex; align-items: center; gap: 16px; }
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  gap: 10px; padding: 14px 28px;
+  font-weight: 500; font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  transition: all 0.4s cubic-bezier(.4,0,.2,1);
+  cursor: pointer; white-space: nowrap;
+  position: relative; overflow: hidden;
+  font-family: var(--sans);
+  border-radius: 2px;
+}
+.btn-gold {
+  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-bright) 100%);
+  color: #0A0A0A; font-weight: 600;
+}
+.btn-gold::before {
+  content: ''; position: absolute;
+  top: 0; left: -100%; width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+  transition: 0.6s;
+}
+.btn-gold:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(201, 169, 97, 0.4); }
+.btn-gold:hover::before { left: 100%; }
+.btn-outline {
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  background: transparent;
+}
+.btn-outline:hover { background: var(--gold); color: #0A0A0A; }
+
+.mobile-menu-btn {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 40px; height: 40px;
+  gap: 4px;
+  position: relative; z-index: 110;
+}
+.mobile-menu-btn span {
+  display: block;
+  width: 22px; height: 1.5px;
+  background: var(--gold);
+  transition: 0.4s cubic-bezier(.4,0,.2,1);
+}
+.mobile-menu-btn.open span:nth-child(1) { transform: translateY(5.5px) rotate(45deg); }
+.mobile-menu-btn.open span:nth-child(2) { opacity: 0; }
+.mobile-menu-btn.open span:nth-child(3) { transform: translateY(-5.5px) rotate(-45deg); }
+
+.mobile-drawer {
+  position: fixed; inset: 0;
+  background: rgba(10,10,10,0.98);
+  backdrop-filter: blur(20px);
+  z-index: 105;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 36px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+.mobile-drawer.open { opacity: 1; pointer-events: auto; }
+.mobile-drawer a {
+  font-family: var(--serif);
+  font-size: 30px;
+  color: var(--ink);
+  font-weight: 400;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: 0.5s cubic-bezier(.4,0,.2,1);
+}
+.mobile-drawer.open a { opacity: 1; transform: translateY(0); }
+.mobile-drawer.open a:nth-child(1) { transition-delay: 0.1s; }
+.mobile-drawer.open a:nth-child(2) { transition-delay: 0.15s; }
+.mobile-drawer.open a:nth-child(3) { transition-delay: 0.2s; }
+.mobile-drawer.open a:nth-child(4) { transition-delay: 0.25s; }
+.mobile-drawer.open a:nth-child(5) { transition-delay: 0.3s; }
+.mobile-drawer.open a:nth-child(6) { transition-delay: 0.35s; }
+.mobile-drawer .mobile-cta { transition-delay: 0.45s !important; margin-top: 16px; }
+
+/* DIVIDER */
+.gold-divider {
+  display: flex; align-items: center; justify-content: center;
+  gap: 14px; margin: 0 auto 20px; max-width: 180px;
+}
+.gold-divider::before, .gold-divider::after {
+  content: ''; flex: 1; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+.gold-divider .diamond {
+  width: 6px; height: 6px;
+  background: var(--gold);
+  transform: rotate(45deg);
+  animation: diamondPulse 3s ease-in-out infinite;
+}
+@keyframes diamondPulse {
+  0%, 100% { transform: rotate(45deg) scale(1); opacity: 1; }
+  50% { transform: rotate(45deg) scale(1.3); opacity: 0.7; }
+}
+
+/* HERO */
+.hero {
+  position: relative; min-height: 92vh;
+  display: flex; align-items: center;
+  padding: 100px 0 80px;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(135deg, rgba(10,10,10,0.85) 0%, rgba(10,10,10,0.65) 50%, rgba(10,10,10,0.9) 100%),
+    url('https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=2000&q=80');
+  background-size: cover;
+  background-position: center;
+  z-index: 0;
+  animation: heroZoom 20s ease-in-out infinite alternate;
+}
+@keyframes heroZoom {
+  from { transform: scale(1); }
+  to { transform: scale(1.08); }
+}
+.hero-bg::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at center, transparent 0%, rgba(10,10,10,0.6) 100%);
+}
+.hero-inner {
+  position: relative; z-index: 2;
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+.hero-eyebrow { margin-bottom: 28px; animation: fadeUp 0.9s 0.1s both; }
+.hero h1 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(42px, 7vw, 96px);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  margin-bottom: 30px;
+}
+.hero h1 .line { display: block; overflow: hidden; }
+.hero h1 .word {
+  display: inline-block;
+  animation: wordReveal 0.9s cubic-bezier(.4,0,.2,1) both;
+}
+.hero h1 em {
+  font-style: italic;
+  color: var(--gold);
+  font-weight: 500;
+}
+@keyframes wordReveal {
+  from { transform: translateY(100%) rotate(5deg); opacity: 0; }
+  to { transform: translateY(0) rotate(0); opacity: 1; }
+}
+.hero .sub {
+  font-size: 16px;
+  color: var(--ink-dim);
+  max-width: 620px;
+  margin: 0 auto 44px;
+  line-height: 1.7;
+  animation: fadeUp 1s 0.8s both;
+}
+.hero .hero-cta {
+  display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;
+  animation: fadeUp 1s 1s both;
+}
+.hero-meta {
+  display: flex; justify-content: center; gap: 50px;
+  margin-top: 80px; padding-top: 40px;
+  border-top: 1px solid var(--line-gold);
+  animation: fadeUp 1s 1.2s both;
+}
+.meta-stat { text-align: center; }
+.meta-stat .num {
+  font-family: var(--serif);
+  font-size: 34px; color: var(--gold);
+  font-weight: 500; line-height: 1;
+  margin-bottom: 6px; display: block;
+}
+.meta-stat .lbl {
+  font-size: 10px; color: var(--muted);
+  letter-spacing: 0.22em; text-transform: uppercase;
+}
+.scroll-cue {
+  position: absolute; bottom: 30px; left: 50%;
+  transform: translateX(-50%);
+  color: var(--gold); opacity: 0.6;
+  font-size: 11px; letter-spacing: 0.3em;
+  text-transform: uppercase; z-index: 2;
+  animation: fadeUp 1s 1.4s both, floatY 2s ease-in-out infinite alternate;
+}
+@keyframes floatY { from { transform: translateX(-50%) translateY(0); } to { transform: translateX(-50%) translateY(8px); } }
+
+.section { padding: 110px 0; position: relative; }
+.section-head { text-align: center; margin-bottom: 70px; }
+.section-head .eyebrow { margin-bottom: 16px; }
+.section-head h2 {
+  font-family: var(--serif);
+  font-size: clamp(32px, 4.5vw, 56px);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin-bottom: 16px;
+}
+.section-head h2 em { color: var(--gold); font-style: italic; font-weight: 400; }
+.section-head .lead {
+  max-width: 580px; margin: 0 auto;
+  color: var(--ink-dim);
+  font-size: 15px; line-height: 1.75;
+}
+
+/* SERVICES */
+.services { background: var(--surface); }
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+.service {
+  background: var(--surface);
+  padding: 48px 28px;
+  text-align: center;
+  transition: 0.5s cubic-bezier(.4,0,.2,1);
+  position: relative;
+}
+.service:hover { background: var(--surface-2); transform: translateY(-4px); }
+.service-icon {
+  width: 64px; height: 64px;
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+  display: grid; place-items: center;
+  margin: 0 auto 24px;
+  color: var(--gold);
+  transition: 0.4s;
+  position: relative;
+}
+.service-icon::before {
+  content: ''; position: absolute; inset: 4px;
+  border: 0.5px solid var(--gold-soft);
+  border-radius: 50%;
+}
+.service:hover .service-icon {
+  background: var(--gold); color: #0A0A0A;
+  box-shadow: 0 0 30px rgba(201, 169, 97, 0.4);
+  transform: scale(1.1);
+}
+.service h3 {
+  font-family: var(--serif);
+  font-size: 20px; font-weight: 500;
+  margin-bottom: 10px;
+}
+.service p { color: var(--muted); font-size: 13px; line-height: 1.7; }
+
+/* ABOUT */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+.about-image {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  aspect-ratio: 4/5;
+  border: 1px solid var(--line-gold);
+}
+.about-image img {
+  width: 100%; height: 100%; object-fit: cover;
+  filter: brightness(0.85) saturate(1.1);
+  transition: transform 1.2s cubic-bezier(.4,0,.2,1);
+}
+.about-image:hover img { transform: scale(1.05); }
+.about-image::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent 50%, rgba(10,10,10,0.7) 100%);
+}
+.about-badge {
+  position: absolute; bottom: 30px; left: 30px;
+  background: rgba(10,10,10,0.8);
+  backdrop-filter: blur(10px);
+  padding: 20px 26px;
+  border: 1px solid var(--line-gold);
+  border-radius: var(--radius);
+  z-index: 1;
+}
+.about-badge .num {
+  font-family: var(--serif);
+  color: var(--gold);
+  font-size: 30px; font-weight: 500; line-height: 1;
+}
+.about-badge .lbl {
+  font-size: 10px; color: var(--muted);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+.about-copy .eyebrow { margin-bottom: 18px; }
+.about-copy h2 {
+  font-family: var(--serif);
+  font-size: clamp(30px, 4vw, 50px);
+  font-weight: 500; letter-spacing: -0.02em;
+  line-height: 1.1; margin-bottom: 24px;
+}
+.about-copy h2 em { color: var(--gold); font-style: italic; font-weight: 400; }
+.about-copy p {
+  color: var(--ink-dim);
+  font-size: 15px; line-height: 1.85;
+  margin-bottom: 18px;
+}
+.about-features {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  margin-top: 34px; padding-top: 34px;
+  border-top: 1px solid var(--line);
+}
+.about-feat { display: flex; gap: 12px; align-items: flex-start; }
+.about-feat-dot {
+  width: 6px; height: 6px;
+  background: var(--gold);
+  transform: rotate(45deg);
+  margin-top: 8px; flex-shrink: 0;
+}
+.about-feat-text { font-size: 14px; color: var(--ink-dim); }
+.about-feat-text strong { color: var(--ink); font-weight: 600; }
+
+/* ============ FLEET — SHOWROOM LOOK ============ */
+.fleet { background: var(--surface); position: relative; }
+.fleet-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.vehicle {
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: 0.5s cubic-bezier(.4,0,.2,1);
+  position: relative;
+}
+.vehicle:hover {
+  transform: translateY(-8px);
+  border-color: var(--gold);
+  box-shadow: var(--shadow-gold);
+}
+
+/* Showroom floor effect for car images — cream gradient pedestal */
+.vehicle-img {
+  position: relative;
+  aspect-ratio: 16/10;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 50% 90%, rgba(0,0,0,0.25) 0%, transparent 55%),
+    radial-gradient(ellipse at center, var(--cream-1) 0%, var(--cream-2) 100%);
+}
+.vehicle-img::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, transparent 60%, rgba(212,199,165,0.35) 100%);
+  pointer-events: none;
+}
+.vehicle-img img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s cubic-bezier(.4,0,.2,1);
+  filter: contrast(1.05) saturate(1.05);
+  mix-blend-mode: multiply;
+}
+.vehicle:hover .vehicle-img img { transform: scale(1.06); }
+.vehicle-img::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent 60%, rgba(10,10,10,0.5) 100%);
+}
+.vehicle-pax {
+  position: absolute; top: 16px; right: 16px;
+  background: rgba(10,10,10,0.75);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--line-gold);
+  color: var(--gold);
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 11px; font-weight: 500;
+  letter-spacing: 0.1em;
+  z-index: 1;
+}
+.vehicle-tag {
+  position: absolute; top: 16px; left: 16px;
+  background: var(--gold); color: #0A0A0A;
+  padding: 5px 12px;
+  border-radius: 4px;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  z-index: 1;
+}
+.vehicle-tag.flagship::before {
+  content: '';
+  display: inline-block;
+  width: 5px; height: 5px;
+  background: #0A0A0A;
+  border-radius: 50%;
+  margin-right: 6px;
+  animation: pulseBlack 1.5s ease-in-out infinite;
+}
+@keyframes pulseBlack {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+.vehicle-body { padding: 26px 26px 24px; }
+.vehicle h3 {
+  font-family: var(--serif);
+  font-size: 22px; font-weight: 500;
+  letter-spacing: -0.01em;
+  margin-bottom: 4px;
+}
+.vehicle .model {
+  font-size: 11px; color: var(--gold);
+  letter-spacing: 0.15em; text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.price-rows { border-top: 1px solid var(--line); }
+.price-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px;
+  padding: 13px 0;
+  border-bottom: 1px solid var(--line);
+  align-items: center;
+  transition: 0.3s;
+}
+.price-row:last-child { border-bottom: none; }
+.price-row:hover { padding-left: 4px; }
+.price-row .label {
+  font-size: 13px;
+  color: var(--ink-dim);
+  font-weight: 500;
+}
+.price-row .hours {
+  display: block;
+  font-size: 10px;
+  color: var(--muted);
+  margin-top: 2px;
+  letter-spacing: 0.08em;
+}
+.price-row .amount {
+  font-family: var(--serif);
+  font-size: 22px; font-weight: 500;
+  color: var(--gold);
+  letter-spacing: -0.01em;
+}
+.price-row .amount .cur {
+  font-size: 11px; color: var(--muted);
+  margin-right: 3px;
+  vertical-align: top;
+  position: relative; top: 3px;
+  letter-spacing: 0.1em;
+}
+.vehicle-book {
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin-top: 22px;
+  padding: 13px;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  border-radius: var(--radius-sm);
+  transition: 0.4s;
+  position: relative;
+  overflow: hidden;
+  font-family: var(--sans);
+  cursor: pointer;
+  background: transparent;
+}
+.vehicle-book::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: var(--gold);
+  transition: 0.4s cubic-bezier(.4,0,.2,1);
+  z-index: -1;
+}
+.vehicle-book:hover { color: #0A0A0A; }
+.vehicle-book:hover::before { left: 0; }
+
+.vehicle.premium {
+  background: linear-gradient(180deg, var(--surface-2) 0%, var(--surface-3) 100%);
+  border-color: var(--line-gold);
+}
+
+/* ============ TIMELINE ZIGZAG ============ */
+.timeline-section { background: var(--bg); overflow: hidden; }
+.timeline {
+  position: relative;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 60px 0 40px;
+}
+.timeline-track {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0;
+  position: relative;
+  min-height: 420px;
+  align-items: center;
+}
+.zigzag-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: visible;
+}
+.zigzag-svg path {
+  fill: none;
+  stroke: url(#zigzagGrad);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1400;
+  stroke-dashoffset: 1400;
+  transition: stroke-dashoffset 2.6s cubic-bezier(.4,0,.2,1);
+  filter: drop-shadow(0 0 6px rgba(201, 169, 97, 0.25));
+}
+.timeline-track.in .zigzag-svg path { stroke-dashoffset: 0; }
+.zigzag-svg .node-dot {
+  fill: var(--gold);
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+.timeline-track.in .zigzag-svg .node-dot {
+  opacity: 0.8;
+  transition-delay: 2.4s;
+}
+.timeline-step {
+  position: relative; z-index: 2;
+  text-align: center; padding: 0 8px;
+  opacity: 0;
+  transition: opacity 0.9s cubic-bezier(.4,0,.2,1), transform 0.5s cubic-bezier(.4,0,.2,1);
+}
+.timeline-track.in .timeline-step { opacity: 1; }
+.timeline-step:nth-child(2) { transition-delay: 0.2s, 0s; }
+.timeline-step:nth-child(3) { transition-delay: 0.4s, 0s; }
+.timeline-step:nth-child(4) { transition-delay: 0.6s, 0s; }
+.timeline-step:nth-child(5) { transition-delay: 0.8s, 0s; }
+.timeline-step:nth-child(odd)  { transform: translateY(-130px); }
+.timeline-step:nth-child(even) { transform: translateY(130px); }
+.timeline-step:nth-child(odd):hover  { transform: translateY(-138px); }
+.timeline-step:nth-child(even):hover { transform: translateY(138px); }
+.timeline-step .circle {
+  width: 70px; height: 70px;
+  background: var(--bg);
+  border: 1.5px solid var(--gold);
+  border-radius: 50%;
+  display: grid; place-items: center;
+  margin: 0 auto 22px;
+  color: var(--gold);
+  font-family: var(--serif);
+  font-size: 22px;
+  font-style: italic;
+  font-weight: 500;
+  transition: 0.5s cubic-bezier(.4,0,.2,1);
+  position: relative;
+}
+.timeline-step .circle::before {
+  content: '';
+  position: absolute; inset: -6px;
+  border: 1px dashed var(--line-gold);
+  border-radius: 50%;
+  opacity: 0;
+  transition: 0.5s;
+  animation: rotate 20s linear infinite paused;
+}
+.timeline-step:hover .circle {
+  background: var(--gold);
+  color: #0A0A0A;
+  box-shadow: 0 0 30px rgba(201, 169, 97, 0.4);
+}
+.timeline-step:hover .circle::before {
+  opacity: 1;
+  animation-play-state: running;
+}
+@keyframes rotate { to { transform: rotate(360deg); } }
+.timeline-step h4 {
+  font-family: var(--serif);
+  font-size: 17px; font-weight: 500;
+  margin-bottom: 8px;
+}
+.timeline-step p {
+  font-size: 13px; color: var(--muted);
+  line-height: 1.65;
+  max-width: 180px; margin: 0 auto;
+}
+
+/* ============ DESTINATIONS — LANGKAWI ============ */
+.destinations { background: var(--bg); position: relative; }
+.destinations::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--line-gold), transparent);
+}
+.dest-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+.dest-card {
+  position: relative;
+  aspect-ratio: 3/4;
+  border-radius: var(--radius);
+  overflow: hidden;
+  cursor: pointer;
+  border: 1px solid var(--line);
+  transition: 0.5s cubic-bezier(.4,0,.2,1);
+  background: var(--surface-2);
+}
+.dest-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--gold);
+  box-shadow: 0 20px 50px rgba(201, 169, 97, 0.2);
+}
+.dest-card img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 1s cubic-bezier(.4,0,.2,1), filter 0.5s;
+  filter: brightness(0.75) saturate(1.1);
+}
+.dest-card:hover img { transform: scale(1.1); filter: brightness(1) saturate(1.2); }
+.dest-card::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent 30%, rgba(10,10,10,0.5) 55%, rgba(10,10,10,0.98) 100%);
+  pointer-events: none;
+}
+.dest-num {
+  position: absolute;
+  top: 16px; left: 16px;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 14px;
+  color: var(--gold);
+  z-index: 2;
+  opacity: 0.9;
+}
+.dest-content {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 22px 20px;
+  z-index: 2;
+}
+.dest-cat {
+  display: inline-block;
+  font-family: var(--deco);
+  font-size: 9px;
+  letter-spacing: 0.25em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  padding: 4px 10px;
+  background: rgba(201, 169, 97, 0.12);
+  border: 1px solid var(--line-gold);
+  border-radius: 999px;
+}
+.dest-content h4 {
+  font-family: var(--serif);
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.15;
+  margin-bottom: 6px;
+  letter-spacing: -0.01em;
+}
+.dest-content p {
+  font-size: 12px;
+  color: var(--ink-dim);
+  line-height: 1.55;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.5s cubic-bezier(.4,0,.2,1), opacity 0.3s;
+}
+.dest-card:hover .dest-content p {
+  max-height: 80px;
+  opacity: 1;
+}
+
+/* GALLERY */
+.gallery-section { background: var(--surface); overflow: hidden; }
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 220px;
+  gap: 16px;
+}
+.gallery-item {
+  position: relative; overflow: hidden;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: 0.5s cubic-bezier(.4,0,.2,1);
+  border: 1px solid var(--line);
+}
+.gallery-item:hover {
+  transform: translateY(-4px);
+  border-color: var(--gold);
+}
+.gallery-item img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 1s cubic-bezier(.4,0,.2,1);
+  filter: brightness(0.88) saturate(1.05);
+}
+.gallery-item:hover img { transform: scale(1.08); filter: brightness(1) saturate(1.1); }
+.gallery-item::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent 50%, rgba(10,10,10,0.92) 100%);
+  pointer-events: none;
+}
+.gallery-item.wide { grid-column: span 2; }
+.gallery-item.tall { grid-row: span 2; }
+.gallery-caption {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 24px; color: var(--ink);
+  z-index: 2;
+  transform: translateY(10px);
+  opacity: 0.85;
+  transition: 0.4s;
+}
+.gallery-item:hover .gallery-caption { transform: translateY(0); opacity: 1; }
+.gallery-caption .quote {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 15px; line-height: 1.4;
+  margin-bottom: 8px;
+}
+.gallery-caption .author {
+  font-size: 11px; color: var(--gold);
+  letter-spacing: 0.2em; text-transform: uppercase;
+}
+
+/* AMENITIES */
+.amenities { background: var(--bg); }
+.amenities-inner {
+  background: var(--surface);
+  border: 1px solid var(--line-gold);
+  border-radius: var(--radius-lg);
+  padding: 70px 50px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.amenities-inner::before {
+  content: '';
+  position: absolute;
+  top: -100px; left: 50%;
+  transform: translateX(-50%);
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(201,169,97,0.12), transparent 70%);
+  pointer-events: none;
+  animation: pulseGlow 6s ease-in-out infinite;
+}
+@keyframes pulseGlow {
+  0%, 100% { opacity: 1; transform: translateX(-50%) scale(1); }
+  50% { opacity: 0.6; transform: translateX(-50%) scale(1.2); }
+}
+.amenities h2 {
+  font-family: var(--serif);
+  font-size: clamp(28px, 3.5vw, 44px);
+  font-weight: 500; margin-bottom: 14px;
+  position: relative;
+}
+.amenities h2 em { color: var(--gold); font-style: italic; }
+.amenities > .container > .amenities-inner > p.sub {
+  color: var(--ink-dim);
+  max-width: 520px; margin: 0 auto 50px;
+  font-size: 15px; line-height: 1.7;
+  position: relative;
+}
+.amenities-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+  max-width: 880px;
+  margin: 0 auto;
+  position: relative;
+}
+.amenity { text-align: center; }
+.amenity-ico {
+  width: 56px; height: 56px;
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+  display: grid; place-items: center;
+  margin: 0 auto 18px;
+  color: var(--gold);
+  background: var(--surface-2);
+  transition: 0.4s cubic-bezier(.4,0,.2,1);
+}
+.amenity:hover .amenity-ico {
+  background: var(--gold); color: #0A0A0A;
+  transform: scale(1.1) rotate(8deg);
+}
+.amenity h4 {
+  font-family: var(--serif);
+  font-size: 15px; font-weight: 500;
+  margin-bottom: 4px;
+}
+.amenity p { font-size: 12px; color: var(--muted); letter-spacing: 0.05em; }
+
+/* WHY */
+.why { background: var(--surface); }
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.why-card {
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 44px 34px;
+  transition: 0.5s cubic-bezier(.4,0,.2,1);
+  position: relative;
+  overflow: hidden;
+}
+.why-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  opacity: 0;
+  transition: 0.4s;
+}
+.why-card:hover {
+  border-color: var(--line-gold);
+  transform: translateY(-6px);
+  background: var(--surface-3);
+}
+.why-card:hover::before { opacity: 1; }
+.why-num {
+  font-family: var(--serif);
+  font-size: 56px;
+  font-weight: 400;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 20px;
+  opacity: 0.9;
+  font-style: italic;
+  transition: 0.4s;
+}
+.why-card:hover .why-num { transform: translateX(4px); }
+.why-card h3 {
+  font-family: var(--serif);
+  font-size: 22px; font-weight: 500;
+  margin-bottom: 14px;
+}
+.why-card p {
+  color: var(--ink-dim);
+  font-size: 14px; line-height: 1.75;
+}
+
+/* CTA */
+.cta-section {
+  background: var(--bg);
+  padding: 130px 0;
+  position: relative;
+  overflow: hidden;
+}
+.cta-section::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(135deg, rgba(10,10,10,0.9), rgba(10,10,10,0.75)),
+    url('https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&w=2000&q=80');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.9;
+  animation: heroZoom 25s ease-in-out infinite alternate;
+}
+.cta-inner {
+  position: relative;
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto;
+}
+.cta-inner h2 {
+  font-family: var(--serif);
+  font-size: clamp(34px, 5vw, 60px);
+  font-weight: 400;
+  margin-bottom: 24px;
+  line-height: 1.1;
+}
+.cta-inner h2 em { color: var(--gold); font-style: italic; }
+.cta-inner p {
+  color: var(--ink-dim);
+  font-size: 16px; line-height: 1.7;
+  margin-bottom: 40px;
+  max-width: 520px;
+  margin-left: auto; margin-right: auto;
+}
+.cta-buttons { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+/* FOOTER */
+footer {
+  background: #050505;
+  padding: 80px 0 30px;
+  border-top: 1px solid var(--line);
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1.2fr;
+  gap: 60px;
+  margin-bottom: 60px;
+}
+footer .logo { margin-bottom: 20px; }
+footer .foot-about {
+  color: var(--muted);
+  font-size: 14px; line-height: 1.8;
+  max-width: 320px;
+}
+.foot-socials { display: flex; gap: 10px; margin-top: 24px; }
+.foot-social {
+  width: 36px; height: 36px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  display: grid; place-items: center;
+  color: var(--muted);
+  transition: 0.3s;
+}
+.foot-social:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-3px); }
+footer h5 {
+  font-family: var(--deco);
+  font-size: 11px; letter-spacing: 0.25em;
+  margin-bottom: 22px;
+  color: var(--gold);
+  font-weight: 500;
+  text-transform: uppercase;
+}
+footer ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+footer ul a { color: var(--ink-dim); font-size: 14px; transition: 0.2s; cursor: pointer; }
+footer ul a:hover { color: var(--gold); padding-left: 4px; }
+.contact-line {
+  display: flex; align-items: flex-start; gap: 12px;
+  margin-bottom: 16px;
+  font-size: 14px; color: var(--ink-dim);
+}
+.contact-line svg { color: var(--gold); flex-shrink: 0; margin-top: 2px; }
+.foot-bottom {
+  padding-top: 30px;
+  border-top: 1px solid var(--line);
+  display: flex; justify-content: space-between;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+/* FLOATING WHATSAPP */
+.floating-wa {
+  position: fixed;
+  bottom: 24px; right: 24px;
+  width: 56px; height: 56px;
+  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-bright) 100%);
+  border-radius: 50%;
+  display: grid; place-items: center;
+  color: #0A0A0A;
+  box-shadow: 0 8px 24px rgba(201, 169, 97, 0.4);
+  z-index: 80;
+  transition: 0.4s cubic-bezier(.4,0,.2,1);
+  animation: floatIn 0.8s 1.5s both, waPulse 2.5s ease-in-out infinite 2s;
+}
+.floating-wa:hover { transform: scale(1.1); }
+.floating-wa::before {
+  content: '';
+  position: absolute; inset: -4px;
+  border: 1.5px solid var(--gold);
+  border-radius: 50%;
+  opacity: 0;
+  animation: waRing 2.5s ease-out infinite 2s;
+}
+@keyframes floatIn {
+  from { transform: scale(0) rotate(-180deg); opacity: 0; }
+  to { transform: scale(1) rotate(0); opacity: 1; }
+}
+@keyframes waPulse {
+  0%, 100% { box-shadow: 0 8px 24px rgba(201, 169, 97, 0.4); }
+  50% { box-shadow: 0 8px 30px rgba(201, 169, 97, 0.7); }
+}
+@keyframes waRing {
+  0% { opacity: 1; transform: scale(1); }
+  100% { opacity: 0; transform: scale(1.6); }
+}
+
+/* ==================================================
+   BOOKING MODAL
+   ================================================== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(5, 5, 5, 0.85);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  z-index: 150;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.modal-overlay.open { opacity: 1; pointer-events: auto; }
+.modal-card {
+  background: linear-gradient(180deg, #181818 0%, #0F0F0F 100%);
+  border: 1px solid var(--line-gold);
+  border-radius: var(--radius-lg);
+  width: 100%;
+  max-width: 580px;
+  max-height: 92vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  transform: translateY(30px) scale(0.96);
+  transition: transform 0.4s cubic-bezier(.4,0,.2,1);
+  box-shadow: 0 30px 80px rgba(0,0,0,0.8), 0 0 40px rgba(201, 169, 97, 0.12);
+  position: relative;
+  scrollbar-width: thin;
+  scrollbar-color: var(--gold) var(--surface);
+}
+.modal-card::-webkit-scrollbar { width: 6px; }
+.modal-card::-webkit-scrollbar-track { background: var(--surface); }
+.modal-card::-webkit-scrollbar-thumb { background: var(--gold-dark); border-radius: 3px; }
+.modal-overlay.open .modal-card { transform: translateY(0) scale(1); }
+
+.modal-close {
+  position: absolute;
+  top: 18px; right: 18px;
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--line);
+  color: var(--ink-dim);
+  display: grid; place-items: center;
+  font-size: 20px;
+  transition: 0.3s;
+  z-index: 2;
+}
+.modal-close:hover {
+  background: var(--gold); color: #0A0A0A;
+  border-color: var(--gold);
+  transform: rotate(90deg);
+}
+
+.modal-head {
+  padding: 40px 40px 24px;
+  border-bottom: 1px solid var(--line);
+  background:
+    radial-gradient(ellipse at top, rgba(201,169,97,0.1), transparent 70%);
+}
+.modal-head .eyebrow { margin-bottom: 10px; font-size: 10px; }
+.modal-head h3 {
+  font-family: var(--serif);
+  font-size: 28px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+  margin-bottom: 6px;
+}
+.modal-head .modal-meta {
+  font-size: 12px;
+  color: var(--gold);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.modal-body { padding: 30px 40px; }
+
+.modal-section-label {
+  font-family: var(--deco);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  display: block;
+}
+
+/* Package selector */
+.packages {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 30px;
+}
+.pkg {
+  position: relative;
+  cursor: pointer;
+}
+.pkg input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+.pkg-card {
+  background: var(--surface);
+  border: 1.5px solid var(--line);
+  border-radius: var(--radius);
+  padding: 16px 14px;
+  text-align: center;
+  transition: 0.3s cubic-bezier(.4,0,.2,1);
+  position: relative;
+  overflow: hidden;
+}
+.pkg-card::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(circle at center, rgba(201,169,97,0.15), transparent 70%);
+  opacity: 0;
+  transition: 0.3s;
+}
+.pkg:hover .pkg-card { border-color: var(--gold-soft); transform: translateY(-2px); }
+.pkg input:checked + .pkg-card {
+  border-color: var(--gold);
+  background: linear-gradient(180deg, rgba(201,169,97,0.08) 0%, var(--surface) 100%);
+  box-shadow: 0 4px 20px rgba(201, 169, 97, 0.15);
+}
+.pkg input:checked + .pkg-card::before { opacity: 1; }
+.pkg-card .pkg-name {
+  font-family: var(--deco);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+  margin-bottom: 8px;
+  transition: 0.3s;
+}
+.pkg input:checked + .pkg-card .pkg-name { color: var(--gold); }
+.pkg-card .pkg-price {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+.pkg-card .pkg-price .cur {
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+  margin-right: 2px;
+  vertical-align: top;
+  position: relative;
+  top: 3px;
+}
+.pkg-card .pkg-hours {
+  font-size: 10px;
+  color: var(--muted);
+  margin-top: 4px;
+  letter-spacing: 0.05em;
+}
+
+/* Form fields */
+.field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.field { margin-bottom: 16px; }
+.field label {
+  display: block;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.field label .req { color: var(--gold); margin-left: 3px; }
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  color: var(--ink);
+  padding: 13px 14px;
+  font-size: 14px;
+  font-family: var(--sans);
+  transition: 0.3s;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  outline: none;
+  border-color: var(--gold);
+  background: var(--surface-2);
+  box-shadow: 0 0 0 3px rgba(201, 169, 97, 0.12);
+}
+.field input::placeholder, .field textarea::placeholder {
+  color: var(--muted);
+  font-size: 13px;
+}
+.field input[type="date"],
+.field input[type="time"] {
+  color-scheme: dark;
+  cursor: pointer;
+}
+.field textarea {
+  resize: vertical;
+  min-height: 60px;
+  font-family: var(--sans);
+}
+
+/* Summary row */
+.booking-summary {
+  margin-top: 20px;
+  padding: 16px 18px;
+  background: rgba(201,169,97,0.06);
+  border: 1px solid var(--line-gold);
+  border-radius: var(--radius-sm);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.booking-summary .label {
+  font-family: var(--deco);
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+.booking-summary .total {
+  font-family: var(--serif);
+  font-size: 26px;
+  color: var(--gold);
+  font-weight: 500;
+}
+.booking-summary .total .cur {
+  font-size: 11px; color: var(--muted);
+  letter-spacing: 0.1em;
+  margin-right: 3px;
+  vertical-align: top;
+  position: relative; top: 3px;
+}
+
+/* Modal footer */
+.modal-footer {
+  padding: 24px 40px 34px;
+  border-top: 1px solid var(--line);
+  background: rgba(0,0,0,0.3);
+}
+.modal-footer .btn {
+  width: 100%;
+  padding: 16px;
+  font-size: 13px;
+  letter-spacing: 0.2em;
+}
+.modal-footer .wa-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.modal-note {
+  text-align: center;
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 12px;
+  letter-spacing: 0.05em;
+}
+
+/* ANIMATIONS */
+@keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.9s ease, transform 0.9s cubic-bezier(.4,0,.2,1);
+}
+.reveal.in { opacity: 1; transform: translateY(0); }
+
+.reveal-stagger > * {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s cubic-bezier(.4,0,.2,1), transform 0.8s cubic-bezier(.4,0,.2,1);
+}
+.reveal-stagger.in > *:nth-child(1) { transition-delay: 0s; opacity: 1; transform: translateY(0); }
+.reveal-stagger.in > *:nth-child(2) { transition-delay: 0.1s; opacity: 1; transform: translateY(0); }
+.reveal-stagger.in > *:nth-child(3) { transition-delay: 0.2s; opacity: 1; transform: translateY(0); }
+.reveal-stagger.in > *:nth-child(4) { transition-delay: 0.3s; opacity: 1; transform: translateY(0); }
+.reveal-stagger.in > *:nth-child(5) { transition-delay: 0.4s; opacity: 1; transform: translateY(0); }
+.reveal-stagger.in > *:nth-child(6) { transition-delay: 0.5s; opacity: 1; transform: translateY(0); }
+.reveal-stagger.in > *:nth-child(7) { transition-delay: 0.6s; opacity: 1; transform: translateY(0); }
+.reveal-stagger.in > *:nth-child(8) { transition-delay: 0.7s; opacity: 1; transform: translateY(0); }
+.reveal-stagger.in > *:nth-child(9) { transition-delay: 0.8s; opacity: 1; transform: translateY(0); }
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .fleet-grid { grid-template-columns: repeat(2, 1fr); }
+  .services-grid { grid-template-columns: repeat(2, 1fr); }
+  .why-grid { grid-template-columns: 1fr; }
+  .about-grid { grid-template-columns: 1fr; gap: 50px; }
+  .about-image { max-width: 500px; margin: 0 auto; aspect-ratio: 4/4; }
+  .amenities-grid { grid-template-columns: repeat(2, 1fr); gap: 40px; }
+  .gallery-grid { grid-template-columns: repeat(3, 1fr); grid-auto-rows: 200px; }
+  .dest-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 768px) {
+  .container { padding: 0 20px; }
+  .nav-links, .nav-actions .btn-outline { display: none; }
+  .mobile-menu-btn { display: flex; }
+
+  .hero { min-height: 88vh; padding: 60px 0 60px; }
+  .hero h1 { font-size: clamp(38px, 11vw, 56px); margin-bottom: 24px; }
+  .hero .sub { font-size: 15px; margin-bottom: 32px; }
+  .hero-meta { gap: 24px; flex-wrap: wrap; margin-top: 50px; padding-top: 30px; }
+  .meta-stat .num { font-size: 26px; }
+  .meta-stat .lbl { font-size: 9px; }
+  .scroll-cue { display: none; }
+
+  .section { padding: 70px 0; }
+  .section-head { margin-bottom: 50px; }
+  .section-head h2 { font-size: clamp(28px, 8vw, 40px); }
+
+  .services-grid { grid-template-columns: 1fr 1fr; }
+  .service { padding: 36px 20px; }
+
+  .fleet-grid { grid-template-columns: 1fr; max-width: 440px; margin: 0 auto; gap: 18px; }
+  .vehicle-body { padding: 22px; }
+  .vehicle h3 { font-size: 20px; }
+  .price-row .amount { font-size: 20px; }
+
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+  .about-features { grid-template-columns: 1fr; }
+  .amenities-inner { padding: 50px 20px; }
+
+  /* TIMELINE vertical on mobile */
+  .timeline { padding: 0; }
+  .timeline-track {
+    grid-template-columns: 1fr; gap: 0; min-height: auto;
+  }
+  .zigzag-svg { display: none; }
+  .timeline-track::before {
+    content: '';
+    position: absolute;
+    top: 0; bottom: 0; left: 35px; right: auto;
+    width: 1px; height: auto;
+    background: linear-gradient(180deg, var(--gold-dark), var(--gold), var(--gold-bright), var(--gold), var(--gold-dark));
+  }
+  .timeline-step,
+  .timeline-step:nth-child(odd),
+  .timeline-step:nth-child(even),
+  .timeline-step:nth-child(odd):hover,
+  .timeline-step:nth-child(even):hover {
+    display: grid;
+    grid-template-columns: 70px 1fr;
+    gap: 20px;
+    text-align: left;
+    padding: 0 0 40px;
+    transform: none;
+  }
+  .timeline-step:last-child { padding-bottom: 0; }
+  .timeline-step .circle { margin: 0; width: 70px; height: 70px; font-size: 20px; }
+  .timeline-step h4 { margin-top: 20px; }
+  .timeline-step p { max-width: none; margin: 0; }
+
+  /* GALLERY mobile */
+  .gallery-grid {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 14px;
+    padding: 0 20px 10px;
+    margin: 0 -20px;
+    scrollbar-width: none;
+  }
+  .gallery-grid::-webkit-scrollbar { display: none; }
+  .gallery-item {
+    flex: 0 0 80%; max-width: 320px; height: 360px;
+    scroll-snap-align: start;
+  }
+  .gallery-item.wide, .gallery-item.tall { grid-column: auto; grid-row: auto; }
+
+  .dest-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .dest-card { aspect-ratio: 3/4; }
+  .dest-content h4 { font-size: 17px; }
+  .dest-content p { max-height: 60px; opacity: 1; }
+
+  .floating-wa { width: 54px; height: 54px; bottom: 20px; right: 20px; }
+  .cta-section { padding: 90px 0; }
+  .cta-inner p { font-size: 15px; }
+
+  /* MODAL mobile — fullscreen */
+  .modal-overlay { padding: 0; }
+  .modal-card {
+    max-height: 100vh;
+    height: 100vh;
+    max-width: 100%;
+    border-radius: 0;
+    border: none;
+  }
+  .modal-head { padding: 40px 24px 20px; }
+  .modal-head h3 { font-size: 24px; }
+  .modal-body { padding: 24px; }
+  .modal-footer { padding: 20px 24px 30px; }
+  .packages { grid-template-columns: 1fr; gap: 8px; }
+  .pkg-card { padding: 14px 18px; display: flex; align-items: center; justify-content: space-between; text-align: left; }
+  .pkg-card .pkg-name { margin-bottom: 0; font-size: 11px; }
+  .pkg-card .pkg-price { font-size: 20px; }
+  .pkg-card .pkg-hours { margin-top: 0; margin-left: auto; margin-right: 14px; }
+  .field-row { grid-template-columns: 1fr; gap: 0; }
+}
+@media (max-width: 480px) {
+  .services-grid { grid-template-columns: 1fr; }
+  .amenities-grid { grid-template-columns: 1fr 1fr; gap: 30px; }
+  .footer-grid { grid-template-columns: 1fr; gap: 36px; }
+  .foot-bottom { flex-direction: column; gap: 10px; text-align: center; }
+  .hero-meta { gap: 20px; }
+  .meta-stat .num { font-size: 24px; }
+  .btn { padding: 12px 22px; font-size: 11px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.2s !important;
+  }
+  .hero-bg { animation: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- NAV -->
+<header class="nav" id="nav">
+  <div class="container nav-inner">
+    <a class="logo" href="#top">
+      <span class="logo-mark">S</span>
+      SLS<span class="dot" style="margin:0 2px">·</span>TRAVEL
+    </a>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="#top" class="active">Home</a></li>
+        <li><a href="#fleet">Fleet</a></li>
+        <li><a href="#booking">Book</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#about">About</a></li>
+      </ul>
+    </nav>
+    <div class="nav-actions">
+      <a class="btn btn-outline" href="#fleet">Book Now</a>
+      <button class="mobile-menu-btn" id="menuBtn" aria-label="menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<!-- MOBILE DRAWER -->
+<div class="mobile-drawer" id="mobileDrawer">
+  <a href="#top" data-close>Home</a>
+  <a href="#fleet" data-close>Fleet</a>
+  <a href="#booking" data-close>How to Book</a>
+  <a href="#gallery" data-close>Gallery</a>
+  <a href="#about" data-close>About</a>
+  <a class="btn btn-gold mobile-cta" href="#fleet" data-close>Book Now</a>
+</div>
+
+<span id="top"></span>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="container hero-inner">
+    <div class="hero-eyebrow">
+      <span class="eyebrow">— Luxury Chauffeur Services —</span>
+    </div>
+    <h1>
+      <span class="line"><span class="word" style="animation-delay:.2s">Arrive</span> <span class="word" style="animation-delay:.3s">in</span> <em><span class="word" style="animation-delay:.4s">style.</span></em></span>
+      <span class="line"><span class="word" style="animation-delay:.5s">Travel</span> <span class="word" style="animation-delay:.6s">with</span> <em><span class="word" style="animation-delay:.7s">distinction.</span></em></span>
+    </h1>
+    <p class="sub">Experience Langkawi's finest chauffeur-driven luxury fleet. From airport pickups at LGK to full-day island tours — discreet, punctual, and impeccably presented.</p>
+    <div class="hero-cta">
+      <a class="btn btn-gold" href="#fleet">View Our Fleet</a>
+      <a class="btn btn-outline" href="#contact">Enquire Now</a>
+    </div>
+    <div class="hero-meta">
+      <div class="meta-stat">
+        <span class="num" data-count="9" data-suffix="+">0</span>
+        <div class="lbl">Premium Vehicles</div>
+      </div>
+      <div class="meta-stat">
+        <span class="num">24/7</span>
+        <div class="lbl">Available</div>
+      </div>
+      <div class="meta-stat">
+        <span class="num" data-count="100" data-suffix="%">0</span>
+        <div class="lbl">Chauffeured</div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-cue">Scroll ↓</div>
+</section>
+
+<!-- SERVICES -->
+<section class="section services" id="services">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="gold-divider"><div class="diamond"></div></div>
+      <span class="eyebrow">Our Services</span>
+      <h2>Tailored to <em>your journey</em></h2>
+      <p class="lead">Whether a swift airport transfer or a full day exploring the city, our services are shaped to every occasion.</p>
+    </div>
+    <div class="services-grid reveal-stagger">
+      <div class="service">
+        <div class="service-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 17h2l1.4-4.2A2 2 0 018.3 11.5h7.4a2 2 0 011.9 1.3L19 17h2M5 17v2h3v-2M16 17v2h3v-2M7 11.5V7a2 2 0 012-2h6a2 2 0 012 2v4.5"/></svg>
+        </div>
+        <h3>Transfers</h3>
+        <p>LGK Airport, jetty, and hotel transfers with professional chauffeurs.</p>
+      </div>
+      <div class="service">
+        <div class="service-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        </div>
+        <h3>Half-Day Tours</h3>
+        <p>4–5 hours exploring Langkawi's beaches, landmarks, and hidden spots.</p>
+      </div>
+      <div class="service">
+        <div class="service-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/><circle cx="12" cy="12" r="4"/></svg>
+        </div>
+        <h3>Full-Day Tours</h3>
+        <p>8–10 hours covering Cenang, Cable Car, mangroves, and island highlights.</p>
+      </div>
+      <div class="service">
+        <div class="service-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H7a4 4 0 00-4 4v2"/><circle cx="10" cy="7" r="4"/><path d="M19 8v6M22 11h-6"/></svg>
+        </div>
+        <h3>Chauffeur Service</h3>
+        <p>Discreet, professional drivers trained in hospitality and punctuality.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-image reveal">
+        <img src="https://images.unsplash.com/photo-1617531653332-bd46c24f2068?auto=format&fit=crop&w=900&q=80" alt="Luxury chauffeur" />
+        <div class="about-badge">
+          <div class="num">10+</div>
+          <div class="lbl">Years of Excellence</div>
+        </div>
+      </div>
+      <div class="about-copy reveal">
+        <span class="eyebrow">About SLS Travel</span>
+        <h2>Langkawi's <em>premier</em> luxury chauffeur service</h2>
+        <p>At SLS Travel, we believe luxury is in the details. Based in the heart of Langkawi, our fleet of impeccably maintained vehicles — paired with professionally trained chauffeurs — delivers more than transportation. We deliver the island experience.</p>
+        <p>Whether you're arriving at Langkawi International Airport (LGK), heading to The Datai, exploring Kilim Geoforest, or making an entrance at a Cenang Beach wedding — every journey with us becomes a refined escape across Malaysia's Jewel of Kedah.</p>
+        <div class="about-features">
+          <div class="about-feat"><div class="about-feat-dot"></div><div class="about-feat-text"><strong>Immaculate Fleet.</strong><br/>Latest models, meticulously maintained.</div></div>
+          <div class="about-feat"><div class="about-feat-dot"></div><div class="about-feat-text"><strong>Discreet Chauffeurs.</strong><br/>Trained to the highest hospitality standard.</div></div>
+          <div class="about-feat"><div class="about-feat-dot"></div><div class="about-feat-text"><strong>Flexible Bookings.</strong><br/>Transfers, half-day, and full-day options.</div></div>
+          <div class="about-feat"><div class="about-feat-dot"></div><div class="about-feat-text"><strong>Premium Amenities.</strong><br/>Refreshments included on every ride.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FLEET ============
+     Each .vehicle has data attributes that feed the booking modal.
+     Replace src URL on <img> with your own PNG images for best look.
+-->
+<section class="section fleet" id="fleet">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="gold-divider"><div class="diamond"></div></div>
+      <span class="eyebrow">Our Fleet</span>
+      <h2>A fleet of <em>distinction</em></h2>
+      <p class="lead">Nine meticulously curated vehicles — from sleek sedans to presidential MPVs. Choose the one that matches the moment.</p>
+    </div>
+
+    <div class="fleet-grid reveal-stagger">
+
+      <article class="vehicle"
+        data-name="Toyota Vios" data-model="Facelift Model · 2022" data-pax="1–4"
+        data-transfer="50" data-half="150" data-full="250"
+        data-hours-half="4–5 Hours" data-hours-full="8–10 Hours">
+        <div class="vehicle-img">
+          <span class="vehicle-pax">1–4 PAX</span>
+          <img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&w=900&q=80" alt="Toyota Vios" />
+        </div>
+        <div class="vehicle-body">
+          <h3>Toyota Vios</h3>
+          <div class="model">Facelift Model · 2022</div>
+          <div class="price-rows">
+            <div class="price-row"><div><div class="label">Transfer</div></div><div class="amount"><span class="cur">RM</span>50</div></div>
+            <div class="price-row"><div><div class="label">Half-Day Tour</div><span class="hours">4–5 Hours</span></div><div class="amount"><span class="cur">RM</span>150</div></div>
+            <div class="price-row"><div><div class="label">Full-Day Tour</div><span class="hours">8–10 Hours</span></div><div class="amount"><span class="cur">RM</span>250</div></div>
+          </div>
+          <button class="vehicle-book">Reserve</button>
+        </div>
+      </article>
+
+      <article class="vehicle"
+        data-name="Toyota Innova Zenix" data-model="Premium MPV" data-pax="1–5"
+        data-transfer="80" data-half="225" data-full="450"
+        data-hours-half="4–5 Hours" data-hours-full="8–10 Hours">
+        <div class="vehicle-img">
+          <span class="vehicle-pax">1–5 PAX</span>
+          <img src="https://images.unsplash.com/photo-1542282088-72c9c27ed0cd?auto=format&fit=crop&w=900&q=80" alt="Toyota Innova Zenix" />
+        </div>
+        <div class="vehicle-body">
+          <h3>Toyota Innova Zenix</h3>
+          <div class="model">Premium MPV</div>
+          <div class="price-rows">
+            <div class="price-row"><div><div class="label">Transfer</div></div><div class="amount"><span class="cur">RM</span>80</div></div>
+            <div class="price-row"><div><div class="label">Half-Day Tour</div><span class="hours">4–5 Hours</span></div><div class="amount"><span class="cur">RM</span>225</div></div>
+            <div class="price-row"><div><div class="label">Full-Day Tour</div><span class="hours">8–10 Hours</span></div><div class="amount"><span class="cur">RM</span>450</div></div>
+          </div>
+          <button class="vehicle-book">Reserve</button>
+        </div>
+      </article>
+
+      <article class="vehicle"
+        data-name="Nissan Urvan" data-model="Highroof · Group Travel" data-pax="4–12"
+        data-transfer="150" data-half="400" data-full="800"
+        data-hours-half="4–5 Hours" data-hours-full="8–10 Hours">
+        <div class="vehicle-img">
+          <span class="vehicle-pax">4–12 PAX</span>
+          <img src="https://images.unsplash.com/photo-1632823471565-1ecdf5c6da77?auto=format&fit=crop&w=900&q=80" alt="Nissan Urvan Highroof" />
+        </div>
+        <div class="vehicle-body">
+          <h3>Nissan Urvan</h3>
+          <div class="model">Highroof · Group Travel</div>
+          <div class="price-rows">
+            <div class="price-row"><div><div class="label">Transfer</div></div><div class="amount"><span class="cur">RM</span>150</div></div>
+            <div class="price-row"><div><div class="label">Half-Day Tour</div><span class="hours">4–5 Hours</span></div><div class="amount"><span class="cur">RM</span>400</div></div>
+            <div class="price-row"><div><div class="label">Full-Day Tour</div><span class="hours">8–10 Hours</span></div><div class="amount"><span class="cur">RM</span>800</div></div>
+          </div>
+          <button class="vehicle-book">Reserve</button>
+        </div>
+      </article>
+
+      <article class="vehicle"
+        data-name="Hyundai Starex / Staria" data-model="Executive Family MPV" data-pax="4–9"
+        data-transfer="180" data-half="450" data-full="900"
+        data-hours-half="4–5 Hours" data-hours-full="8–10 Hours">
+        <div class="vehicle-img">
+          <span class="vehicle-pax">4–9 PAX</span>
+          <img src="https://images.unsplash.com/photo-1609710228159-0fa9bd7c0827?auto=format&fit=crop&w=900&q=80" alt="Hyundai Starex" />
+        </div>
+        <div class="vehicle-body">
+          <h3>Hyundai Starex / Staria</h3>
+          <div class="model">Executive Family MPV</div>
+          <div class="price-rows">
+            <div class="price-row"><div><div class="label">Transfer</div></div><div class="amount"><span class="cur">RM</span>180</div></div>
+            <div class="price-row"><div><div class="label">Half-Day Tour</div><span class="hours">4–5 Hours</span></div><div class="amount"><span class="cur">RM</span>450</div></div>
+            <div class="price-row"><div><div class="label">Full-Day Tour</div><span class="hours">8–10 Hours</span></div><div class="amount"><span class="cur">RM</span>900</div></div>
+          </div>
+          <button class="vehicle-book">Reserve</button>
+        </div>
+      </article>
+
+      <article class="vehicle"
+        data-name="Toyota Hiace Van" data-model="SLWB 2.8 · Spacious" data-pax="5–12"
+        data-transfer="200" data-half="450" data-full="900"
+        data-hours-half="4–5 Hours" data-hours-full="8–10 Hours">
+        <div class="vehicle-img">
+          <span class="vehicle-pax">5–12 PAX</span>
+          <img src="https://images.unsplash.com/photo-1519003722824-194d4455a60c?auto=format&fit=crop&w=900&q=80" alt="Toyota Hiace Van" />
+        </div>
+        <div class="vehicle-body">
+          <h3>Toyota Hiace Van</h3>
+          <div class="model">SLWB 2.8 · Spacious</div>
+          <div class="price-rows">
+            <div class="price-row"><div><div class="label">Transfer</div></div><div class="amount"><span class="cur">RM</span>200</div></div>
+            <div class="price-row"><div><div class="label">Half-Day Tour</div><span class="hours">4–5 Hours</span></div><div class="amount"><span class="cur">RM</span>450</div></div>
+            <div class="price-row"><div><div class="label">Full-Day Tour</div><span class="hours">8–10 Hours</span></div><div class="amount"><span class="cur">RM</span>900</div></div>
+          </div>
+          <button class="vehicle-book">Reserve</button>
+        </div>
+      </article>
+
+      <article class="vehicle premium"
+        data-name="Toyota Vellfire" data-model="AGH30 · Luxury MPV" data-pax="1–6"
+        data-transfer="180" data-half="500" data-full="1000"
+        data-hours-half="4–5 Hours" data-hours-full="8–12 Hours">
+        <div class="vehicle-img">
+          <span class="vehicle-tag">Premium</span>
+          <span class="vehicle-pax">1–6 PAX</span>
+          <img src="https://images.unsplash.com/photo-1621248437860-ea48f5762c90?auto=format&fit=crop&w=900&q=80" alt="Toyota Vellfire" />
+        </div>
+        <div class="vehicle-body">
+          <h3>Toyota Vellfire</h3>
+          <div class="model">AGH30 · Luxury MPV</div>
+          <div class="price-rows">
+            <div class="price-row"><div><div class="label">Transfer</div></div><div class="amount"><span class="cur">RM</span>180</div></div>
+            <div class="price-row"><div><div class="label">Half-Day Tour</div><span class="hours">4–5 Hours</span></div><div class="amount"><span class="cur">RM</span>500</div></div>
+            <div class="price-row"><div><div class="label">Full-Day Tour</div><span class="hours">8–12 Hours</span></div><div class="amount"><span class="cur">RM</span>1000</div></div>
+          </div>
+          <button class="vehicle-book">Reserve</button>
+        </div>
+      </article>
+
+      <article class="vehicle premium"
+        data-name="Toyota Alphard" data-model="AGH30 · Executive Class" data-pax="1–6"
+        data-transfer="200" data-half="550" data-full="1100"
+        data-hours-half="4–5 Hours" data-hours-full="8–10 Hours">
+        <div class="vehicle-img">
+          <span class="vehicle-tag">Premium</span>
+          <span class="vehicle-pax">1–6 PAX</span>
+          <img src="https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=900&q=80" alt="Toyota Alphard" />
+        </div>
+        <div class="vehicle-body">
+          <h3>Toyota Alphard</h3>
+          <div class="model">AGH30 · Executive Class</div>
+          <div class="price-rows">
+            <div class="price-row"><div><div class="label">Transfer</div></div><div class="amount"><span class="cur">RM</span>200</div></div>
+            <div class="price-row"><div><div class="label">Half-Day Tour</div><span class="hours">4–5 Hours</span></div><div class="amount"><span class="cur">RM</span>550</div></div>
+            <div class="price-row"><div><div class="label">Full-Day Tour</div><span class="hours">8–10 Hours</span></div><div class="amount"><span class="cur">RM</span>1100</div></div>
+          </div>
+          <button class="vehicle-book">Reserve</button>
+        </div>
+      </article>
+
+      <article class="vehicle premium"
+        data-name="Toyota Vellfire New" data-model="AGH40 · Latest Generation" data-pax="1–6"
+        data-transfer="250" data-half="600" data-full="1200"
+        data-hours-half="4–5 Hours" data-hours-full="8–10 Hours">
+        <div class="vehicle-img">
+          <span class="vehicle-tag flagship">New · Flagship</span>
+          <span class="vehicle-pax">1–6 PAX</span>
+          <img src="https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&fit=crop&w=900&q=80" alt="Toyota Vellfire AGH40" />
+        </div>
+        <div class="vehicle-body">
+          <h3>Toyota Vellfire <span style="color:var(--gold)">New</span></h3>
+          <div class="model">AGH40 · Latest Generation</div>
+          <div class="price-rows">
+            <div class="price-row"><div><div class="label">Transfer</div></div><div class="amount"><span class="cur">RM</span>250</div></div>
+            <div class="price-row"><div><div class="label">Half-Day Tour</div><span class="hours">4–5 Hours</span></div><div class="amount"><span class="cur">RM</span>600</div></div>
+            <div class="price-row"><div><div class="label">Full-Day Tour</div><span class="hours">8–10 Hours</span></div><div class="amount"><span class="cur">RM</span>1200</div></div>
+          </div>
+          <button class="vehicle-book">Reserve</button>
+        </div>
+      </article>
+
+      <article class="vehicle premium"
+        data-name="Toyota Alphard New" data-model="AGH40 · Presidential" data-pax="1–6"
+        data-transfer="300" data-half="700" data-full="1400"
+        data-hours-half="4–5 Hours" data-hours-full="8–10 Hours">
+        <div class="vehicle-img">
+          <span class="vehicle-tag flagship">New · Flagship</span>
+          <span class="vehicle-pax">1–6 PAX</span>
+          <img src="https://images.unsplash.com/photo-1631295868223-63265b40d9e4?auto=format&fit=crop&w=900&q=80" alt="Toyota Alphard AGH40" />
+        </div>
+        <div class="vehicle-body">
+          <h3>Toyota Alphard <span style="color:var(--gold)">New</span></h3>
+          <div class="model">AGH40 · Presidential</div>
+          <div class="price-rows">
+            <div class="price-row"><div><div class="label">Transfer</div></div><div class="amount"><span class="cur">RM</span>300</div></div>
+            <div class="price-row"><div><div class="label">Half-Day Tour</div><span class="hours">4–5 Hours</span></div><div class="amount"><span class="cur">RM</span>700</div></div>
+            <div class="price-row"><div><div class="label">Full-Day Tour</div><span class="hours">8–10 Hours</span></div><div class="amount"><span class="cur">RM</span>1400</div></div>
+          </div>
+          <button class="vehicle-book">Reserve</button>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING TIMELINE — ZIGZAG -->
+<section class="section timeline-section" id="booking">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="gold-divider"><div class="diamond"></div></div>
+      <span class="eyebrow">How It Works</span>
+      <h2>Reserve in <em>five simple steps</em></h2>
+      <p class="lead">A seamless booking experience — from first enquiry to the moment your chauffeur arrives at your door.</p>
+    </div>
+    <div class="timeline">
+      <div class="timeline-track reveal">
+        <svg class="zigzag-svg" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+          <defs>
+            <linearGradient id="zigzagGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%"   stop-color="#8B7436"/>
+              <stop offset="25%"  stop-color="#C9A961"/>
+              <stop offset="50%"  stop-color="#E8C77A"/>
+              <stop offset="75%"  stop-color="#C9A961"/>
+              <stop offset="100%" stop-color="#8B7436"/>
+            </linearGradient>
+          </defs>
+          <path d="M 10,18 L 30,82 L 50,18 L 70,82 L 90,18" vector-effect="non-scaling-stroke"/>
+          <circle class="node-dot" cx="10" cy="18" r="0.8"/>
+          <circle class="node-dot" cx="30" cy="82" r="0.8"/>
+          <circle class="node-dot" cx="50" cy="18" r="0.8"/>
+          <circle class="node-dot" cx="70" cy="82" r="0.8"/>
+          <circle class="node-dot" cx="90" cy="18" r="0.8"/>
+        </svg>
+        <div class="timeline-step">
+          <div class="circle">i</div>
+          <h4>Choose Vehicle</h4>
+          <p>Browse our fleet and tap "Reserve" on the vehicle that suits your occasion.</p>
+        </div>
+        <div class="timeline-step">
+          <div class="circle">ii</div>
+          <h4>Fill Details</h4>
+          <p>Pick your package, date, time, and pickup location in the booking form.</p>
+        </div>
+        <div class="timeline-step">
+          <div class="circle">iii</div>
+          <h4>Send via WhatsApp</h4>
+          <p>Submit and your booking details will be sent to us on WhatsApp instantly.</p>
+        </div>
+        <div class="timeline-step">
+          <div class="circle">iv</div>
+          <h4>Confirmation</h4>
+          <p>Receive your booking confirmation and driver details within minutes.</p>
+        </div>
+        <div class="timeline-step">
+          <div class="circle">v</div>
+          <h4>Enjoy the Ride</h4>
+          <p>Your chauffeur arrives punctually — sit back and enjoy the journey.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="section gallery-section" id="gallery">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="gold-divider"><div class="diamond"></div></div>
+      <span class="eyebrow">Customer Gallery</span>
+      <h2>Moments from our <em>clients</em></h2>
+      <p class="lead">A glimpse into the journeys we've had the privilege of being part of.</p>
+    </div>
+    <div class="gallery-grid reveal-stagger">
+      <div class="gallery-item tall">
+        <img src="https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=900&q=80" alt="" />
+        <div class="gallery-caption"><div class="quote">"On time for our 6am LGK pickup. Flawless service."</div><div class="author">— Ahmad R., Kuala Lumpur</div></div>
+      </div>
+      <div class="gallery-item wide">
+        <img src="https://images.unsplash.com/photo-1556122071-e404cb6f31c0?auto=format&fit=crop&w=900&q=80" alt="" />
+        <div class="gallery-caption"><div class="quote">"The Alphard was immaculate. Family trip to The Datai made effortless."</div><div class="author">— The Tan Family</div></div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=900&q=80" alt="" />
+        <div class="gallery-caption"><div class="quote">"Pure luxury — every detail."</div><div class="author">— Sarah L.</div></div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1519003722824-194d4455a60c?auto=format&fit=crop&w=900&q=80" alt="" />
+        <div class="gallery-caption"><div class="quote">"Perfect for our 10-pax team retreat in Langkawi."</div><div class="author">— Nexora Sdn Bhd</div></div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?auto=format&fit=crop&w=900&q=80" alt="" />
+        <div class="gallery-caption"><div class="quote">"Full-day island tour — Cable Car to Kilim, unforgettable."</div><div class="author">— Mr. Chen, Singapore</div></div>
+      </div>
+      <div class="gallery-item wide">
+        <img src="https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=900&q=80" alt="" />
+        <div class="gallery-caption"><div class="quote">"Arrived at our Cenang beach wedding in the Vellfire. Guests were stunned."</div><div class="author">— Priya &amp; Raj</div></div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1486754735734-325b5831c3ad?auto=format&fit=crop&w=900&q=80" alt="" />
+        <div class="gallery-caption"><div class="quote">"Executive airport transfers done right."</div><div class="author">— Datuk H.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AMENITIES -->
+<section class="section amenities">
+  <div class="container">
+    <div class="amenities-inner reveal">
+      <span class="eyebrow" style="margin-bottom:16px;display:inline-block;">Complimentary</span>
+      <h2>Thoughtful <em>refinements</em><br/>on every journey</h2>
+      <p class="sub">Every ride with SLS Travel comes complete with small touches that make every mile feel a little more elevated.</p>
+      <div class="amenities-grid">
+        <div class="amenity">
+          <div class="amenity-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2h8l1 6c0 3-2 5-5 5s-5-2-5-5l1-6z"/><path d="M9 13v6a3 3 0 006 0v-6"/></svg></div>
+          <h4>Mineral Water</h4><p>Chilled &amp; served</p>
+        </div>
+        <div class="amenity">
+          <div class="amenity-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h3"/></svg></div>
+          <h4>Wet Tissue</h4><p>Refreshing &amp; clean</p>
+        </div>
+        <div class="amenity">
+          <div class="amenity-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 7l8-4 8 4v10l-8 4-8-4V7z"/><path d="M4 7l8 4 8-4M12 11v10"/></svg></div>
+          <h4>Fresh Tissue</h4><p>Always on hand</p>
+        </div>
+        <div class="amenity">
+          <div class="amenity-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H7a4 4 0 00-4 4v2"/><circle cx="10" cy="7" r="4"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div>
+          <h4>Trained Chauffeur</h4><p>Discreet &amp; punctual</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="section why">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="gold-divider"><div class="diamond"></div></div>
+      <span class="eyebrow">Why Choose SLS</span>
+      <h2>The <em>hallmarks</em> of our service</h2>
+    </div>
+    <div class="why-grid reveal-stagger">
+      <div class="why-card"><div class="why-num">i.</div><h3>Curated Fleet</h3><p>From the dependable Toyota Vios to the presidential Alphard AGH40 — every vehicle is hand-picked, meticulously maintained, and presented to the highest standard.</p></div>
+      <div class="why-card"><div class="why-num">ii.</div><h3>Chauffeur Excellence</h3><p>Our drivers aren't just transporters — they are hospitality professionals. Discreet, punctual, and deeply familiar with every route and destination.</p></div>
+      <div class="why-card"><div class="why-num">iii.</div><h3>Transparent Pricing</h3><p>No hidden fees. No surprises. Fixed rates for transfers, half-day, and full-day tours across our entire fleet — clarity from the first call.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="contact">
+  <div class="container cta-inner reveal">
+    <span class="eyebrow" style="margin-bottom:20px;display:inline-block;">Ready when you are</span>
+    <h2>Your <em>Langkawi journey</em><br/>begins with a message.</h2>
+    <p>Tell us where you're going on the island. We'll make sure you arrive in the way you deserve — relaxed, punctual, and unmistakably at ease.</p>
+    <div class="cta-buttons">
+      <a class="btn btn-gold" href="https://wa.me/60123456789" target="_blank">Book via WhatsApp</a>
+      <a class="btn btn-outline" href="mailto:hello@slstravel.com">Email Us</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a class="logo"><span class="logo-mark">S</span>SLS<span class="dot" style="margin:0 2px">·</span>TRAVEL</a>
+        <p class="foot-about">Langkawi's premier chauffeur-driven luxury transportation. Where every island journey becomes an experience.</p>
+        <div class="foot-socials">
+          <a class="foot-social" aria-label="Instagram"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
+          <a class="foot-social" aria-label="WhatsApp" href="https://wa.me/60123456789" target="_blank"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-8.5 15.3L2 22l4.9-1.3A10 10 0 1012 2zm0 18a8 8 0 01-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1112 20zm4.5-6c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1l-.8 1c-.1.2-.3.2-.5.1a6.5 6.5 0 01-3.2-2.8c-.2-.4.2-.4.6-1.1.1-.1.1-.3 0-.4l-.7-1.7c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.7.4-.2.3-.9.9-.9 2.2 0 1.3 1 2.6 1.1 2.8.1.2 2 3.1 4.8 4.2 1.8.7 2.5.8 3.4.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2-.1-.1-.3-.2-.5-.3z"/></svg></a>
+          <a class="foot-social" aria-label="Facebook"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M13 22v-8h3l.5-4H13V7.5c0-1.2.3-2 2-2h2V2.1c-.4-.1-1.6-.1-3-.1-3 0-5 1.8-5 5.2V10H6v4h3v8h4z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h5>Explore</h5>
+        <ul>
+          <li><a href="#fleet">Our Fleet</a></li>
+          <li><a href="#booking">How to Book</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#about">About Us</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Services</h5>
+        <ul>
+          <li><a href="#fleet">Airport Transfers</a></li>
+          <li><a href="#fleet">Half-Day Tours</a></li>
+          <li><a href="#fleet">Full-Day Tours</a></li>
+          <li><a href="#fleet">Chauffeur Service</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Get in Touch</h5>
+        <div class="contact-line">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.5 19.5 0 01-6-6A19.8 19.8 0 012 4.2 2 2 0 014 2h3a2 2 0 012 1.7 13 13 0 00.7 2.8 2 2 0 01-.4 2.1L8 10a16 16 0 006 6l1.4-1.3a2 2 0 012.1-.4 13 13 0 002.8.7 2 2 0 011.7 2z"/></svg>
+          <div>+60 12-345 6789<br/><span style="font-size:12px;color:var(--muted)">Available 24/7</span></div>
+        </div>
+        <div class="contact-line">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1 0 2 1 2 2v12c0 1-1 2-2 2H4c-1 0-2-1-2-2V6c0-1 1-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
+          <div>hello@slstravel.com</div>
+        </div>
+        <div class="contact-line">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <div>Langkawi, Kedah, Malaysia</div>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <div>© 2026 SLS Travel. All rights reserved.</div>
+      <div>Luxury Chauffeur Services · Langkawi, Malaysia</div>
+    </div>
+  </div>
+</footer>
+
+<!-- FLOATING WHATSAPP -->
+<a href="https://wa.me/60123456789" target="_blank" class="floating-wa" aria-label="WhatsApp">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-8.5 15.3L2 22l4.9-1.3A10 10 0 1012 2zm4.5 12c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1l-.8 1c-.1.2-.3.2-.5.1a6.5 6.5 0 01-3.2-2.8c-.2-.4.2-.4.6-1.1.1-.1.1-.3 0-.4l-.7-1.7c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.7.4-.2.3-.9.9-.9 2.2 0 1.3 1 2.6 1.1 2.8.1.2 2 3.1 4.8 4.2 1.8.7 2.5.8 3.4.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2-.1-.1-.3-.2-.5-.3z"/></svg>
+</a>
+
+<!-- ==================== BOOKING MODAL ==================== -->
+<div class="modal-overlay" id="bookingModal" role="dialog" aria-modal="true" aria-labelledby="modalVehicleName">
+  <div class="modal-card">
+    <button class="modal-close" id="modalClose" aria-label="Close">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+
+    <div class="modal-head">
+      <span class="eyebrow">Book Your Journey</span>
+      <h3 id="modalVehicleName">Vehicle Name</h3>
+      <div class="modal-meta" id="modalMeta">Model · Pax</div>
+    </div>
+
+    <div class="modal-body">
+      <form id="bookingForm" autocomplete="on">
+
+        <!-- Package Selection -->
+        <label class="modal-section-label">1. Select Package</label>
+        <div class="packages">
+          <label class="pkg">
+            <input type="radio" name="package" value="transfer" checked>
+            <div class="pkg-card">
+              <div class="pkg-name">Transfer</div>
+              <div class="pkg-price"><span class="cur">RM</span><span id="priceTransfer">0</span></div>
+              <div class="pkg-hours">One-way</div>
+            </div>
+          </label>
+          <label class="pkg">
+            <input type="radio" name="package" value="half">
+            <div class="pkg-card">
+              <div class="pkg-name">Half Day</div>
+              <div class="pkg-price"><span class="cur">RM</span><span id="priceHalf">0</span></div>
+              <div class="pkg-hours" id="hoursHalf">4–5 Hours</div>
+            </div>
+          </label>
+          <label class="pkg">
+            <input type="radio" name="package" value="full">
+            <div class="pkg-card">
+              <div class="pkg-name">Full Day</div>
+              <div class="pkg-price"><span class="cur">RM</span><span id="priceFull">0</span></div>
+              <div class="pkg-hours" id="hoursFull">8–10 Hours</div>
+            </div>
+          </label>
+        </div>
+
+        <!-- Customer Details -->
+        <label class="modal-section-label">2. Your Details</label>
+
+        <div class="field-row">
+          <div class="field">
+            <label>Name <span class="req">*</span></label>
+            <input type="text" id="fName" required placeholder="Your full name" autocomplete="name">
+          </div>
+          <div class="field">
+            <label>Phone <span class="req">*</span></label>
+            <input type="tel" id="fPhone" required placeholder="+60 XX-XXX XXXX" autocomplete="tel">
+          </div>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label>Pickup Date <span class="req">*</span></label>
+            <input type="date" id="fDate" required>
+          </div>
+          <div class="field">
+            <label>Pickup Time <span class="req">*</span></label>
+            <input type="time" id="fTime" required>
+          </div>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label>Passengers</label>
+            <input type="number" id="fPax" min="1" value="1" placeholder="1">
+          </div>
+          <div class="field">
+            <label>Package Hours</label>
+            <input type="text" id="fHoursDisplay" value="One-way Transfer" readonly>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Pickup Location <span class="req">*</span></label>
+          <input type="text" id="fPickup" required placeholder="e.g. Langkawi Airport (LGK), hotel name, jetty">
+        </div>
+
+        <div class="field">
+          <label>Drop-off / Destination</label>
+          <input type="text" id="fDropoff" placeholder="e.g. Pantai Cenang, The Datai, Cable Car, Kilim">
+        </div>
+
+        <div class="field">
+          <label>Special Requests</label>
+          <textarea id="fNotes" placeholder="Child seat, specific route, luggage details, etc."></textarea>
+        </div>
+
+        <!-- Summary -->
+        <div class="booking-summary">
+          <div>
+            <div class="label">Total Estimated</div>
+            <div style="font-size:11px;color:var(--muted);margin-top:4px;" id="summaryPkg">Transfer Package</div>
+          </div>
+          <div class="total"><span class="cur">RM</span><span id="summaryTotal">0</span></div>
+        </div>
+
+      </form>
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-gold wa-btn" id="sendBooking">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-8.5 15.3L2 22l4.9-1.3A10 10 0 1012 2zm4.5 12c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1l-.8 1c-.1.2-.3.2-.5.1a6.5 6.5 0 01-3.2-2.8c-.2-.4.2-.4.6-1.1.1-.1.1-.3 0-.4l-.7-1.7c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.7.4-.2.3-.9.9-.9 2.2 0 1.3 1 2.6 1.1 2.8.1.2 2 3.1 4.8 4.2 1.8.7 2.5.8 3.4.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2-.1-.1-.3-.2-.5-.3z"/></svg>
+        Send Booking via WhatsApp
+      </button>
+      <div class="modal-note">You'll be redirected to WhatsApp with your booking details pre-filled.</div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  // =================== CONFIG ===================
+  // Replace with your actual WhatsApp number (include country code, no + or spaces)
+  const WHATSAPP_NUMBER = '60123456789';
+
+  // =================== SCROLL REVEAL ===================
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -50px 0px' });
+  document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => io.observe(el));
+
+  // =================== SCROLL PROGRESS ===================
+  const progress = document.getElementById('scrollProgress');
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    const sc = window.scrollY;
+    const h = document.documentElement.scrollHeight - window.innerHeight;
+    progress.style.width = ((sc / h) * 100) + '%';
+    nav.classList.toggle('scrolled', sc > 50);
+  }, { passive: true });
+
+  // =================== ACTIVE NAV ===================
+  const sectionMap = [
+    { id: 'top', label: 'Home' },
+    { id: 'fleet', label: 'Fleet' },
+    { id: 'booking', label: 'Book' },
+    { id: 'gallery', label: 'Gallery' },
+    { id: 'about', label: 'About' }
+  ];
+  const navLinks = document.querySelectorAll('.nav-links a');
+  function setActive() {
+    const scrollY = window.scrollY + 140;
+    let current = 'Home';
+    sectionMap.forEach(s => {
+      const el = document.getElementById(s.id);
+      if (el && el.offsetTop <= scrollY) current = s.label;
+    });
+    navLinks.forEach(a => a.classList.toggle('active', a.textContent.trim() === current));
+  }
+  window.addEventListener('scroll', setActive, { passive: true });
+  setActive();
+
+  // =================== MOBILE MENU ===================
+  const menuBtn = document.getElementById('menuBtn');
+  const drawer = document.getElementById('mobileDrawer');
+  menuBtn.addEventListener('click', () => {
+    menuBtn.classList.toggle('open');
+    drawer.classList.toggle('open');
+    document.body.style.overflow = drawer.classList.contains('open') ? 'hidden' : '';
+  });
+  drawer.querySelectorAll('[data-close]').forEach(a => {
+    a.addEventListener('click', () => {
+      menuBtn.classList.remove('open');
+      drawer.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+
+  // =================== COUNTER ANIMATION ===================
+  const counters = document.querySelectorAll('[data-count]');
+  const counterIO = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const el = entry.target;
+      const target = parseInt(el.dataset.count);
+      const suffix = el.dataset.suffix || '';
+      const duration = 1600;
+      const startTime = performance.now();
+      function update(t) {
+        const p = Math.min((t - startTime) / duration, 1);
+        const eased = 1 - Math.pow(1 - p, 4);
+        el.textContent = Math.round(target * eased) + suffix;
+        if (p < 1) requestAnimationFrame(update);
+      }
+      requestAnimationFrame(update);
+      counterIO.unobserve(el);
+    });
+  }, { threshold: 0.5 });
+  counters.forEach(c => counterIO.observe(c));
+
+  // =================== BOOKING MODAL ===================
+  const modal = document.getElementById('bookingModal');
+  const modalClose = document.getElementById('modalClose');
+  let currentVehicle = null;
+
+  // Set date input minimum to today
+  const today = new Date().toISOString().split('T')[0];
+  document.getElementById('fDate').setAttribute('min', today);
+
+  // Open modal on Reserve click
+  document.querySelectorAll('.vehicle-book').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const vehicle = btn.closest('.vehicle');
+      currentVehicle = {
+        name: vehicle.dataset.name,
+        model: vehicle.dataset.model,
+        pax: vehicle.dataset.pax,
+        prices: {
+          transfer: vehicle.dataset.transfer,
+          half: vehicle.dataset.half,
+          full: vehicle.dataset.full
+        },
+        hours: {
+          transfer: 'One-way',
+          half: vehicle.dataset.hoursHalf,
+          full: vehicle.dataset.hoursFull
+        }
+      };
+      populateModal();
+      openModal();
+    });
+  });
+
+  function populateModal() {
+    document.getElementById('modalVehicleName').textContent = currentVehicle.name;
+    document.getElementById('modalMeta').textContent = currentVehicle.model + ' · ' + currentVehicle.pax + ' Pax';
+    document.getElementById('priceTransfer').textContent = currentVehicle.prices.transfer;
+    document.getElementById('priceHalf').textContent = currentVehicle.prices.half;
+    document.getElementById('priceFull').textContent = currentVehicle.prices.full;
+    document.getElementById('hoursHalf').textContent = currentVehicle.hours.half;
+    document.getElementById('hoursFull').textContent = currentVehicle.hours.full;
+    // Reset to transfer package by default
+    document.querySelector('input[name="package"][value="transfer"]').checked = true;
+    updateSummary();
+  }
+
+  function openModal() {
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal() {
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  modalClose.addEventListener('click', closeModal);
+  modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+  });
+
+  // Update summary when package changes
+  document.querySelectorAll('input[name="package"]').forEach(input => {
+    input.addEventListener('change', updateSummary);
+  });
+
+  function updateSummary() {
+    if (!currentVehicle) return;
+    const pkg = document.querySelector('input[name="package"]:checked').value;
+    const price = currentVehicle.prices[pkg];
+    const hours = currentVehicle.hours[pkg];
+    const pkgLabels = { transfer: 'Transfer Package', half: 'Half-Day Tour', full: 'Full-Day Tour' };
+    document.getElementById('summaryPkg').textContent = pkgLabels[pkg];
+    document.getElementById('summaryTotal').textContent = price;
+    const hoursDisplayEl = document.getElementById('fHoursDisplay');
+    hoursDisplayEl.value = pkg === 'transfer' ? 'One-way Transfer' : `${pkgLabels[pkg]} (${hours})`;
+  }
+
+  // Send booking via WhatsApp
+  document.getElementById('sendBooking').addEventListener('click', (e) => {
+    e.preventDefault();
+
+    // Simple validation — highlight required fields
+    const required = ['fName', 'fPhone', 'fDate', 'fTime', 'fPickup'];
+    let valid = true;
+    let firstInvalid = null;
+    required.forEach(id => {
+      const el = document.getElementById(id);
+      if (!el.value.trim()) {
+        el.style.borderColor = '#C9A961';
+        el.style.boxShadow = '0 0 0 3px rgba(201, 169, 97, 0.2)';
+        if (!firstInvalid) firstInvalid = el;
+        valid = false;
+      } else {
+        el.style.borderColor = '';
+        el.style.boxShadow = '';
+      }
+    });
+    if (!valid) {
+      firstInvalid.focus();
+      firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+
+    // Gather booking details
+    const pkg = document.querySelector('input[name="package"]:checked').value;
+    const pkgLabels = { transfer: 'Transfer (One-way)', half: 'Half-Day Tour', full: 'Full-Day Tour' };
+    const price = currentVehicle.prices[pkg];
+    const hours = pkg === 'transfer' ? '' : ` (${currentVehicle.hours[pkg]})`;
+
+    const name = document.getElementById('fName').value.trim();
+    const phone = document.getElementById('fPhone').value.trim();
+    const date = document.getElementById('fDate').value;
+    const time = document.getElementById('fTime').value;
+    const pax = document.getElementById('fPax').value || '1';
+    const pickup = document.getElementById('fPickup').value.trim();
+    const dropoff = document.getElementById('fDropoff').value.trim() || '-';
+    const notes = document.getElementById('fNotes').value.trim() || '-';
+
+    // Format date nicely
+    let formattedDate = date;
+    try {
+      const d = new Date(date);
+      formattedDate = d.toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' });
+    } catch(e) {}
+
+    // Build message
+    const lines = [
+      '*🚗 SLS TRAVEL — LANGKAWI BOOKING*',
+      '',
+      '*Vehicle:* ' + currentVehicle.name,
+      '*Model:* ' + currentVehicle.model,
+      '*Package:* ' + pkgLabels[pkg] + hours,
+      '*Rate:* RM ' + price,
+      '',
+      '━━━━━━━━━━━━━━━━',
+      '*📋 CUSTOMER DETAILS*',
+      '━━━━━━━━━━━━━━━━',
+      '*Name:* ' + name,
+      '*Phone:* ' + phone,
+      '*Passengers:* ' + pax + ' pax',
+      '',
+      '*📅 Pickup Date:* ' + formattedDate,
+      '*🕐 Pickup Time:* ' + time,
+      '*📍 Pickup Location:* ' + pickup,
+      '*🎯 Drop-off:* ' + dropoff,
+      '',
+      '*📝 Special Requests:*',
+      notes,
+      '',
+      '━━━━━━━━━━━━━━━━',
+      'Sent via SLS Travel Langkawi website'
+    ];
+    const message = encodeURIComponent(lines.join('\n'));
+    const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${message}`;
+    window.open(waUrl, '_blank');
+  });
+
+  // Reset field border on input
+  document.querySelectorAll('#bookingForm input, #bookingForm textarea').forEach(el => {
+    el.addEventListener('input', () => {
+      el.style.borderColor = '';
+      el.style.boxShadow = '';
+    });
+  });
+</script>
+</body>
+</html>

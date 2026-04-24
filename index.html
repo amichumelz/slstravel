@@ -274,7 +274,7 @@ body::before {
   position: absolute; inset: 0;
   background:
     linear-gradient(135deg, rgba(10,10,10,0.85) 0%, rgba(10,10,10,0.65) 50%, rgba(10,10,10,0.9) 100%),
-    url('https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=2000&q=80');
+    url('image/hero-vellfire.png');
   background-size: cover;
   background-position: center;
   z-index: 0;
@@ -379,7 +379,7 @@ body::before {
 .services { background: var(--surface); }
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 1px;
   background: var(--line);
   border: 1px solid var(--line);
@@ -494,6 +494,7 @@ body::before {
 }
 .about-feat-text { font-size: 14px; color: var(--ink-dim); }
 .about-feat-text strong { color: var(--ink); font-weight: 600; }
+
 
 /* ============ FLEET — SHOWROOM LOOK ============ */
 .fleet { background: var(--surface); position: relative; }
@@ -629,6 +630,25 @@ body::before {
   vertical-align: top;
   position: relative; top: 3px;
   letter-spacing: 0.1em;
+}
+.extra-hour {
+  padding: 10px 0 0;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-align: right;
+  font-family: var(--deco);
+  font-weight: 500;
+}
+.extra-hour .val {
+  color: var(--gold);
+  font-family: var(--serif);
+  font-size: 13px;
+  font-style: italic;
+  margin-left: 6px;
+  letter-spacing: 0;
+  text-transform: none;
 }
 .vehicle-book {
   display: block;
@@ -772,99 +792,6 @@ body::before {
   max-width: 180px; margin: 0 auto;
 }
 
-/* ============ DESTINATIONS — LANGKAWI ============ */
-.destinations { background: var(--bg); position: relative; }
-.destinations::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--line-gold), transparent);
-}
-.dest-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
-}
-.dest-card {
-  position: relative;
-  aspect-ratio: 3/4;
-  border-radius: var(--radius);
-  overflow: hidden;
-  cursor: pointer;
-  border: 1px solid var(--line);
-  transition: 0.5s cubic-bezier(.4,0,.2,1);
-  background: var(--surface-2);
-}
-.dest-card:hover {
-  transform: translateY(-8px);
-  border-color: var(--gold);
-  box-shadow: 0 20px 50px rgba(201, 169, 97, 0.2);
-}
-.dest-card img {
-  width: 100%; height: 100%;
-  object-fit: cover;
-  transition: transform 1s cubic-bezier(.4,0,.2,1), filter 0.5s;
-  filter: brightness(0.75) saturate(1.1);
-}
-.dest-card:hover img { transform: scale(1.1); filter: brightness(1) saturate(1.2); }
-.dest-card::after {
-  content: '';
-  position: absolute; inset: 0;
-  background: linear-gradient(180deg, transparent 30%, rgba(10,10,10,0.5) 55%, rgba(10,10,10,0.98) 100%);
-  pointer-events: none;
-}
-.dest-num {
-  position: absolute;
-  top: 16px; left: 16px;
-  font-family: var(--serif);
-  font-style: italic;
-  font-size: 14px;
-  color: var(--gold);
-  z-index: 2;
-  opacity: 0.9;
-}
-.dest-content {
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  padding: 22px 20px;
-  z-index: 2;
-}
-.dest-cat {
-  display: inline-block;
-  font-family: var(--deco);
-  font-size: 9px;
-  letter-spacing: 0.25em;
-  color: var(--gold);
-  text-transform: uppercase;
-  margin-bottom: 10px;
-  padding: 4px 10px;
-  background: rgba(201, 169, 97, 0.12);
-  border: 1px solid var(--line-gold);
-  border-radius: 999px;
-}
-.dest-content h4 {
-  font-family: var(--serif);
-  font-size: 20px;
-  font-weight: 500;
-  line-height: 1.15;
-  margin-bottom: 6px;
-  letter-spacing: -0.01em;
-}
-.dest-content p {
-  font-size: 12px;
-  color: var(--ink-dim);
-  line-height: 1.55;
-  max-height: 0;
-  overflow: hidden;
-  opacity: 0;
-  transition: max-height 0.5s cubic-bezier(.4,0,.2,1), opacity 0.3s;
-}
-.dest-card:hover .dest-content p {
-  max-height: 80px;
-  opacity: 1;
-}
-
 /* GALLERY */
 .gallery-section { background: var(--surface); overflow: hidden; }
 .gallery-grid {
@@ -889,11 +816,13 @@ body::before {
   transition: transform 1s cubic-bezier(.4,0,.2,1);
   filter: brightness(0.88) saturate(1.05);
 }
+.gallery-item.portrait img {
+  object-fit: contain;
+  background: #0b0b0b;
+}
 .gallery-item:hover img { transform: scale(1.08); filter: brightness(1) saturate(1.1); }
 .gallery-item::after {
-  content: ''; position: absolute; inset: 0;
-  background: linear-gradient(180deg, transparent 50%, rgba(10,10,10,0.92) 100%);
-  pointer-events: none;
+  display: none;
 }
 .gallery-item.wide { grid-column: span 2; }
 .gallery-item.tall { grid-row: span 2; }
@@ -1228,13 +1157,108 @@ footer ul a:hover { color: var(--gold); padding-left: 4px; }
 }
 
 .modal-head {
-  padding: 40px 40px 24px;
+  padding: 0 0 24px;
   border-bottom: 1px solid var(--line);
   background:
     radial-gradient(ellipse at top, rgba(201,169,97,0.1), transparent 70%);
 }
-.modal-head .eyebrow { margin-bottom: 10px; font-size: 10px; }
-.modal-head h3 {
+
+/* Interior gallery — main image + thumbnails */
+.modal-gallery {
+  position: relative;
+}
+.modal-interior {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  background: var(--surface);
+}
+.modal-interior img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.5s ease, transform 8s linear;
+  filter: brightness(0.85) saturate(1.1);
+}
+.modal-interior img.active {
+  opacity: 1;
+  transform: scale(1.04);
+}
+.modal-interior::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(10,10,10,0.15) 0%, rgba(10,10,10,0.45) 60%, rgba(20,20,20,0.98) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+.gallery-counter {
+  position: absolute;
+  top: 20px; left: 24px;
+  z-index: 3;
+  font-family: var(--deco);
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  color: var(--gold);
+  text-transform: uppercase;
+  padding: 6px 14px;
+  background: rgba(10,10,10,0.6);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--line-gold);
+  border-radius: 999px;
+}
+/* Thumbnails strip */
+.gallery-thumbs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  padding: 12px 40px 0;
+  margin-top: -60px;
+  position: relative;
+  z-index: 2;
+}
+.gallery-thumb {
+  position: relative;
+  aspect-ratio: 16/10;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  cursor: pointer;
+  border: 2px solid rgba(10,10,10,0.6);
+  transition: 0.3s cubic-bezier(.4,0,.2,1);
+  background: var(--surface);
+}
+.gallery-thumb img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  filter: brightness(0.6);
+  transition: filter 0.3s;
+}
+.gallery-thumb::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: rgba(10,10,10,0.5);
+  transition: 0.3s;
+  pointer-events: none;
+}
+.gallery-thumb:hover img { filter: brightness(0.85); }
+.gallery-thumb:hover::after { background: rgba(10,10,10,0.2); }
+.gallery-thumb.active {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 2px rgba(201, 169, 97, 0.2), 0 6px 20px rgba(0,0,0,0.4);
+}
+.gallery-thumb.active img { filter: brightness(1) saturate(1.1); }
+.gallery-thumb.active::after { background: transparent; }
+
+.modal-head-text {
+  padding: 24px 40px 0;
+  position: relative;
+  z-index: 2;
+}
+.modal-head-text .eyebrow { margin-bottom: 10px; font-size: 10px; }
+.modal-head-text h3 {
   font-family: var(--serif);
   font-size: 28px;
   font-weight: 500;
@@ -1242,11 +1266,17 @@ footer ul a:hover { color: var(--gold); padding-left: 4px; }
   line-height: 1.15;
   margin-bottom: 6px;
 }
-.modal-head .modal-meta {
+.modal-head-text .modal-meta {
   font-size: 12px;
   color: var(--gold);
   letter-spacing: 0.15em;
   text-transform: uppercase;
+}
+.modal-head-text .modal-alt {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 8px;
+  line-height: 1.5;
 }
 
 .modal-body { padding: 30px 40px; }
@@ -1481,7 +1511,6 @@ footer ul a:hover { color: var(--gold); padding-left: 4px; }
   .about-image { max-width: 500px; margin: 0 auto; aspect-ratio: 4/4; }
   .amenities-grid { grid-template-columns: repeat(2, 1fr); gap: 40px; }
   .gallery-grid { grid-template-columns: repeat(3, 1fr); grid-auto-rows: 200px; }
-  .dest-grid { grid-template-columns: repeat(3, 1fr); }
 }
 @media (max-width: 768px) {
   .container { padding: 0 20px; }
@@ -1512,35 +1541,93 @@ footer ul a:hover { color: var(--gold); padding-left: 4px; }
   .about-features { grid-template-columns: 1fr; }
   .amenities-inner { padding: 50px 20px; }
 
-  /* TIMELINE vertical on mobile */
-  .timeline { padding: 0; }
+  /* TIMELINE — zigzag vertical on mobile (left-right alternating) */
+  .timeline { padding: 10px 0 0; }
   .timeline-track {
-    grid-template-columns: 1fr; gap: 0; min-height: auto;
+    grid-template-columns: 1fr;
+    gap: 0;
+    min-height: auto;
+    position: relative;
   }
   .zigzag-svg { display: none; }
+
+  /* Central vertical gold line */
   .timeline-track::before {
     content: '';
     position: absolute;
-    top: 0; bottom: 0; left: 35px; right: auto;
+    top: 30px; bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
     width: 1px; height: auto;
     background: linear-gradient(180deg, var(--gold-dark), var(--gold), var(--gold-bright), var(--gold), var(--gold-dark));
+    z-index: 0;
   }
+
+  /* Reset hover + base — 3 cols: left-text | circle | right-text */
   .timeline-step,
   .timeline-step:nth-child(odd),
   .timeline-step:nth-child(even),
   .timeline-step:nth-child(odd):hover,
   .timeline-step:nth-child(even):hover {
     display: grid;
-    grid-template-columns: 70px 1fr;
-    gap: 20px;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 14px;
+    align-items: center;
+    padding: 0 0 50px;
     text-align: left;
-    padding: 0 0 40px;
     transform: none;
+    position: relative;
+    z-index: 1;
   }
   .timeline-step:last-child { padding-bottom: 0; }
-  .timeline-step .circle { margin: 0; width: 70px; height: 70px; font-size: 20px; }
-  .timeline-step h4 { margin-top: 20px; }
-  .timeline-step p { max-width: none; margin: 0; }
+
+  /* Circle sits in the middle column — same position for every step */
+  .timeline-step .circle {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    margin: 0;
+    width: 60px; height: 60px;
+    font-size: 18px;
+    align-self: center;
+  }
+
+  /* ODD steps (i, iii, v) — text on the RIGHT */
+  .timeline-step:nth-child(odd) > h4 {
+    grid-column: 3; grid-row: 1;
+    text-align: left;
+    align-self: end;
+    padding-top: 6px;
+    max-width: none;
+    margin: 0;
+    font-size: 15px;
+  }
+  .timeline-step:nth-child(odd) > p {
+    grid-column: 3; grid-row: 2;
+    text-align: left;
+    align-self: start;
+    max-width: none;
+    margin: 4px 0 0;
+    font-size: 12px;
+  }
+
+  /* EVEN steps (ii, iv) — text on the LEFT */
+  .timeline-step:nth-child(even) > h4 {
+    grid-column: 1; grid-row: 1;
+    text-align: right;
+    align-self: end;
+    padding-top: 6px;
+    max-width: none;
+    margin: 0;
+    font-size: 15px;
+  }
+  .timeline-step:nth-child(even) > p {
+    grid-column: 1; grid-row: 2;
+    text-align: right;
+    align-self: start;
+    max-width: none;
+    margin: 4px 0 0;
+    font-size: 12px;
+  }
 
   /* GALLERY mobile */
   .gallery-grid {
@@ -1559,11 +1646,6 @@ footer ul a:hover { color: var(--gold); padding-left: 4px; }
   }
   .gallery-item.wide, .gallery-item.tall { grid-column: auto; grid-row: auto; }
 
-  .dest-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-  .dest-card { aspect-ratio: 3/4; }
-  .dest-content h4 { font-size: 17px; }
-  .dest-content p { max-height: 60px; opacity: 1; }
-
   .floating-wa { width: 54px; height: 54px; bottom: 20px; right: 20px; }
   .cta-section { padding: 90px 0; }
   .cta-inner p { font-size: 15px; }
@@ -1577,8 +1659,10 @@ footer ul a:hover { color: var(--gold); padding-left: 4px; }
     border-radius: 0;
     border: none;
   }
-  .modal-head { padding: 40px 24px 20px; }
-  .modal-head h3 { font-size: 24px; }
+  .modal-interior { aspect-ratio: 16/10; border-radius: 0; }
+  .gallery-thumbs { padding: 10px 20px 0; gap: 6px; margin-top: -50px; }
+  .modal-head-text { padding: 20px 24px 0; }
+  .modal-head-text h3 { font-size: 24px; }
   .modal-body { padding: 24px; }
   .modal-footer { padding: 20px 24px 30px; }
   .packages { grid-template-columns: 1fr; gap: 8px; }
@@ -1596,6 +1680,14 @@ footer ul a:hover { color: var(--gold); padding-left: 4px; }
   .hero-meta { gap: 20px; }
   .meta-stat .num { font-size: 24px; }
   .btn { padding: 12px 22px; font-size: 11px; }
+
+  /* Tighter timeline on tiny phones */
+  .timeline-step { gap: 10px !important; padding-bottom: 44px !important; }
+  .timeline-step .circle { width: 52px !important; height: 52px !important; font-size: 16px !important; }
+  .timeline-step:nth-child(odd) > h4,
+  .timeline-step:nth-child(even) > h4 { font-size: 14px !important; }
+  .timeline-step:nth-child(odd) > p,
+  .timeline-step:nth-child(even) > p { font-size: 11px !important; line-height: 1.5 !important; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1714,6 +1806,20 @@ footer ul a:hover { color: var(--gold); padding-left: 4px; }
       </div>
       <div class="service">
         <div class="service-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M11 2l-1 8 3 1-1 11 8-11-3-1 1-8z"/><circle cx="6" cy="20" r="2"/><path d="M6 18V8"/></svg>
+        </div>
+        <h3>Golf Trips</h3>
+        <p>Seamless rides to Els Club Teluk Datai, Gunung Raya, and other greens.</p>
+      </div>
+      <div class="service">
+        <div class="service-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
+        </div>
+        <h3>Business Meetings</h3>
+        <p>Punctual, discreet corporate transport for conferences and client visits.</p>
+      </div>
+      <div class="service">
+        <div class="service-icon">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H7a4 4 0 00-4 4v2"/><circle cx="10" cy="7" r="4"/><path d="M19 8v6M22 11h-6"/></svg>
         </div>
         <h3>Chauffeur Service</h3>
@@ -1728,7 +1834,7 @@ footer ul a:hover { color: var(--gold); padding-left: 4px; }
   <div class="container">
     <div class="about-grid">
       <div class="about-image reveal">
-        <img src="https://images.unsplash.com/photo-1617531653332-bd46c24f2068?auto=format&fit=crop&w=900&q=80" alt="Luxury chauffeur" />
+        <img src="image/about-vellfire.png" alt="Luxury chauffeur" />
         <div class="about-badge">
           <div class="num">10+</div>
           <div class="lbl">Years of Excellence</div>
@@ -1766,58 +1872,74 @@ footer ul a:hover { color: var(--gold); padding-left: 4px; }
     <div class="fleet-grid reveal-stagger">
 
       <article class="vehicle"
-        data-name="Toyota Vios" data-model="Facelift Model · 2022" data-pax="1–4"
-        data-transfer="50" data-half="150" data-full="250"
-        data-hours-half="4–5 Hours" data-hours-full="8–10 Hours">
+        data-name="Sedan" data-alt="Toyota Vios · Nissan Almera · Honda City"
+        data-model="Comfortable Sedan" data-pax="1–4"
+        data-transfer="100" data-half="180" data-full="350"
+        data-extra="40"
+        data-hours-half="4–5 Hours" data-hours-full="8–10 Hours"
+        data-int1="image/sedan-interior-1.png"
+        data-int2="image/sedan-interior-2.png"
+        data-int3="image/sedan-interior-3.png">
         <div class="vehicle-img">
           <span class="vehicle-pax">1–4 PAX</span>
-          <img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&w=900&q=80" alt="Toyota Vios" />
+          <img src="image/toyota vios.png" alt="Sedan" />
         </div>
         <div class="vehicle-body">
-          <h3>Toyota Vios</h3>
-          <div class="model">Facelift Model · 2022</div>
+          <h3>Sedan</h3>
+          <div class="model">Toyota Vios · Almera · Honda City</div>
           <div class="price-rows">
-            <div class="price-row"><div><div class="label">Transfer</div></div><div class="amount"><span class="cur">RM</span>50</div></div>
-            <div class="price-row"><div><div class="label">Half-Day Tour</div><span class="hours">4–5 Hours</span></div><div class="amount"><span class="cur">RM</span>150</div></div>
-            <div class="price-row"><div><div class="label">Full-Day Tour</div><span class="hours">8–10 Hours</span></div><div class="amount"><span class="cur">RM</span>250</div></div>
+            <div class="price-row"><div><div class="label">Transfer</div></div><div class="amount"><span class="cur">RM</span>100</div></div>
+            <div class="price-row"><div><div class="label">Half-Day Tour</div><span class="hours">4–5 Hours</span></div><div class="amount"><span class="cur">RM</span>180</div></div>
+            <div class="price-row"><div><div class="label">Full-Day Tour</div><span class="hours">8–10 Hours</span></div><div class="amount"><span class="cur">RM</span>350</div></div>
           </div>
+          <div class="extra-hour">Extra Hour <span class="val">RM 40</span></div>
           <button class="vehicle-book">Reserve</button>
         </div>
       </article>
 
       <article class="vehicle"
-        data-name="Toyota Innova Zenix" data-model="Premium MPV" data-pax="1–5"
-        data-transfer="80" data-half="225" data-full="450"
-        data-hours-half="4–5 Hours" data-hours-full="8–10 Hours">
+        data-name="Premium MPV" data-alt="Toyota Innova Zenix · Veloz · Nissan Serena"
+        data-model="Family MPV" data-pax="1–5"
+        data-transfer="130" data-half="280" data-full="480"
+        data-extra="50"
+        data-hours-half="4–5 Hours" data-hours-full="8–10 Hours"
+        data-int1="image/premium-mpv-interior-1.png"
+        data-int2="image/premium-mpv-interior-2.png"
+        data-int3="image/premium-mpv-interior-3.png">
         <div class="vehicle-img">
           <span class="vehicle-pax">1–5 PAX</span>
-          <img src="https://images.unsplash.com/photo-1542282088-72c9c27ed0cd?auto=format&fit=crop&w=900&q=80" alt="Toyota Innova Zenix" />
+          <img src="image/innova zenix.png" alt="Premium MPV" />
         </div>
         <div class="vehicle-body">
-          <h3>Toyota Innova Zenix</h3>
-          <div class="model">Premium MPV</div>
+          <h3>Premium MPV</h3>
+          <div class="model">Innova Zenix · Veloz · Serena</div>
           <div class="price-rows">
-            <div class="price-row"><div><div class="label">Transfer</div></div><div class="amount"><span class="cur">RM</span>80</div></div>
-            <div class="price-row"><div><div class="label">Half-Day Tour</div><span class="hours">4–5 Hours</span></div><div class="amount"><span class="cur">RM</span>225</div></div>
-            <div class="price-row"><div><div class="label">Full-Day Tour</div><span class="hours">8–10 Hours</span></div><div class="amount"><span class="cur">RM</span>450</div></div>
+            <div class="price-row"><div><div class="label">Transfer</div></div><div class="amount"><span class="cur">RM</span>130</div></div>
+            <div class="price-row"><div><div class="label">Half-Day Tour</div><span class="hours">4–5 Hours</span></div><div class="amount"><span class="cur">RM</span>280</div></div>
+            <div class="price-row"><div><div class="label">Full-Day Tour</div><span class="hours">8–10 Hours</span></div><div class="amount"><span class="cur">RM</span>480</div></div>
           </div>
+          <div class="extra-hour">Extra Hour <span class="val">RM 50</span></div>
           <button class="vehicle-book">Reserve</button>
         </div>
       </article>
 
       <article class="vehicle"
-        data-name="Nissan Urvan" data-model="Highroof · Group Travel" data-pax="4–12"
-        data-transfer="150" data-half="400" data-full="800"
-        data-hours-half="4–5 Hours" data-hours-full="8–10 Hours">
+        data-name="Nissan Urvan" data-alt="Highroof 12-Seater"
+        data-model="Highroof · Group Travel" data-pax="5–12"
+        data-transfer="150–250" data-half="400" data-full="800"
+        data-hours-half="4–5 Hours" data-hours-full="8–10 Hours"
+        data-int1="image/nissan-urvan-interior-1.png"
+        data-int2="image/nissan-urvan-interior-2.png"
+        data-int3="image/nissan-urvan-interior-3.png">
         <div class="vehicle-img">
-          <span class="vehicle-pax">4–12 PAX</span>
-          <img src="https://images.unsplash.com/photo-1632823471565-1ecdf5c6da77?auto=format&fit=crop&w=900&q=80" alt="Nissan Urvan Highroof" />
+          <span class="vehicle-pax">5–12 PAX</span>
+          <img src="image/nissan urvan.png" alt="Nissan Urvan Highroof" />
         </div>
         <div class="vehicle-body">
           <h3>Nissan Urvan</h3>
           <div class="model">Highroof · Group Travel</div>
           <div class="price-rows">
-            <div class="price-row"><div><div class="label">Transfer</div></div><div class="amount"><span class="cur">RM</span>150</div></div>
+            <div class="price-row"><div><div class="label">Transfer</div></div><div class="amount"><span class="cur">RM</span>150–250</div></div>
             <div class="price-row"><div><div class="label">Half-Day Tour</div><span class="hours">4–5 Hours</span></div><div class="amount"><span class="cur">RM</span>400</div></div>
             <div class="price-row"><div><div class="label">Full-Day Tour</div><span class="hours">8–10 Hours</span></div><div class="amount"><span class="cur">RM</span>800</div></div>
           </div>
@@ -1826,18 +1948,22 @@ footer ul a:hover { color: var(--gold); padding-left: 4px; }
       </article>
 
       <article class="vehicle"
-        data-name="Hyundai Starex / Staria" data-model="Executive Family MPV" data-pax="4–9"
-        data-transfer="180" data-half="450" data-full="900"
-        data-hours-half="4–5 Hours" data-hours-full="8–10 Hours">
+        data-name="Hyundai Starex / Staria" data-alt="Executive Family MPV"
+        data-model="Executive Family MPV" data-pax="4–9"
+        data-transfer="250" data-half="450" data-full="900"
+        data-hours-half="4–5 Hours" data-hours-full="8–10 Hours"
+        data-int1="image/hyundai-starex-interior-1.png"
+        data-int2="image/hyundai-starex-interior-2.png"
+        data-int3="image/hyundai-starex-interior-3.png">
         <div class="vehicle-img">
           <span class="vehicle-pax">4–9 PAX</span>
-          <img src="https://images.unsplash.com/photo-1609710228159-0fa9bd7c0827?auto=format&fit=crop&w=900&q=80" alt="Hyundai Starex" />
+          <img src="image/hyundai starex.png" alt="Hyundai Starex" />
         </div>
         <div class="vehicle-body">
           <h3>Hyundai Starex / Staria</h3>
           <div class="model">Executive Family MPV</div>
           <div class="price-rows">
-            <div class="price-row"><div><div class="label">Transfer</div></div><div class="amount"><span class="cur">RM</span>180</div></div>
+            <div class="price-row"><div><div class="label">Transfer</div></div><div class="amount"><span class="cur">RM</span>250</div></div>
             <div class="price-row"><div><div class="label">Half-Day Tour</div><span class="hours">4–5 Hours</span></div><div class="amount"><span class="cur">RM</span>450</div></div>
             <div class="price-row"><div><div class="label">Full-Day Tour</div><span class="hours">8–10 Hours</span></div><div class="amount"><span class="cur">RM</span>900</div></div>
           </div>
@@ -1846,18 +1972,22 @@ footer ul a:hover { color: var(--gold); padding-left: 4px; }
       </article>
 
       <article class="vehicle"
-        data-name="Toyota Hiace Van" data-model="SLWB 2.8 · Spacious" data-pax="5–12"
-        data-transfer="200" data-half="450" data-full="900"
-        data-hours-half="4–5 Hours" data-hours-full="8–10 Hours">
+        data-name="Toyota Hiace Van" data-alt="SLWB 2.8 · Spacious"
+        data-model="SLWB 2.8 · Spacious" data-pax="5–12"
+        data-transfer="250" data-half="450" data-full="900"
+        data-hours-half="4–5 Hours" data-hours-full="8–10 Hours"
+        data-int1="image/toyota-hiace-interior-1.png"
+        data-int2="image/toyota-hiace-interior-2.png"
+        data-int3="image/toyota-hiace-interior-3.png">
         <div class="vehicle-img">
           <span class="vehicle-pax">5–12 PAX</span>
-          <img src="https://images.unsplash.com/photo-1519003722824-194d4455a60c?auto=format&fit=crop&w=900&q=80" alt="Toyota Hiace Van" />
+          <img src="image/toyota hiace van.png" alt="Toyota Hiace Van" />
         </div>
         <div class="vehicle-body">
           <h3>Toyota Hiace Van</h3>
           <div class="model">SLWB 2.8 · Spacious</div>
           <div class="price-rows">
-            <div class="price-row"><div><div class="label">Transfer</div></div><div class="amount"><span class="cur">RM</span>200</div></div>
+            <div class="price-row"><div><div class="label">Transfer</div></div><div class="amount"><span class="cur">RM</span>250</div></div>
             <div class="price-row"><div><div class="label">Half-Day Tour</div><span class="hours">4–5 Hours</span></div><div class="amount"><span class="cur">RM</span>450</div></div>
             <div class="price-row"><div><div class="label">Full-Day Tour</div><span class="hours">8–10 Hours</span></div><div class="amount"><span class="cur">RM</span>900</div></div>
           </div>
@@ -1866,19 +1996,23 @@ footer ul a:hover { color: var(--gold); padding-left: 4px; }
       </article>
 
       <article class="vehicle premium"
-        data-name="Toyota Vellfire" data-model="AGH30 · Luxury MPV" data-pax="1–6"
-        data-transfer="180" data-half="500" data-full="1000"
-        data-hours-half="4–5 Hours" data-hours-full="8–12 Hours">
+        data-name="Toyota Vellfire" data-alt="AGH30 · Luxury MPV"
+        data-model="AGH30 · Luxury MPV" data-pax="1–6"
+        data-transfer="200" data-half="500" data-full="1000"
+        data-hours-half="4–5 Hours" data-hours-full="8–12 Hours"
+        data-int1="image/toyota-vellfire-interior-1.png"
+        data-int2="image/toyota-vellfire-interior-2.png"
+        data-int3="image/toyota-vellfire-interior-3.png">
         <div class="vehicle-img">
           <span class="vehicle-tag">Premium</span>
           <span class="vehicle-pax">1–6 PAX</span>
-          <img src="https://images.unsplash.com/photo-1621248437860-ea48f5762c90?auto=format&fit=crop&w=900&q=80" alt="Toyota Vellfire" />
+          <img src="image/toyota vellfire agh30.png" alt="Toyota Vellfire" />
         </div>
         <div class="vehicle-body">
           <h3>Toyota Vellfire</h3>
           <div class="model">AGH30 · Luxury MPV</div>
           <div class="price-rows">
-            <div class="price-row"><div><div class="label">Transfer</div></div><div class="amount"><span class="cur">RM</span>180</div></div>
+            <div class="price-row"><div><div class="label">Transfer</div></div><div class="amount"><span class="cur">RM</span>200</div></div>
             <div class="price-row"><div><div class="label">Half-Day Tour</div><span class="hours">4–5 Hours</span></div><div class="amount"><span class="cur">RM</span>500</div></div>
             <div class="price-row"><div><div class="label">Full-Day Tour</div><span class="hours">8–12 Hours</span></div><div class="amount"><span class="cur">RM</span>1000</div></div>
           </div>
@@ -1887,19 +2021,23 @@ footer ul a:hover { color: var(--gold); padding-left: 4px; }
       </article>
 
       <article class="vehicle premium"
-        data-name="Toyota Alphard" data-model="AGH30 · Executive Class" data-pax="1–6"
-        data-transfer="200" data-half="550" data-full="1100"
-        data-hours-half="4–5 Hours" data-hours-full="8–10 Hours">
+        data-name="Toyota Alphard" data-alt="AGH30 · Executive Class"
+        data-model="AGH30 · Executive Class" data-pax="1–6"
+        data-transfer="250" data-half="550" data-full="1100"
+        data-hours-half="4–5 Hours" data-hours-full="8–10 Hours"
+        data-int1="image/toyota-alphard-agh30-interior-1.png"
+        data-int2="image/toyota-alphard-agh30-interior-2.png"
+        data-int3="image/toyota-alphard-agh30-interior-3.png">
         <div class="vehicle-img">
           <span class="vehicle-tag">Premium</span>
           <span class="vehicle-pax">1–6 PAX</span>
-          <img src="https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=900&q=80" alt="Toyota Alphard" />
+          <img src="image/alphard agh30.png" alt="Toyota Alphard" />
         </div>
         <div class="vehicle-body">
           <h3>Toyota Alphard</h3>
           <div class="model">AGH30 · Executive Class</div>
           <div class="price-rows">
-            <div class="price-row"><div><div class="label">Transfer</div></div><div class="amount"><span class="cur">RM</span>200</div></div>
+            <div class="price-row"><div><div class="label">Transfer</div></div><div class="amount"><span class="cur">RM</span>250</div></div>
             <div class="price-row"><div><div class="label">Half-Day Tour</div><span class="hours">4–5 Hours</span></div><div class="amount"><span class="cur">RM</span>550</div></div>
             <div class="price-row"><div><div class="label">Full-Day Tour</div><span class="hours">8–10 Hours</span></div><div class="amount"><span class="cur">RM</span>1100</div></div>
           </div>
@@ -1908,19 +2046,23 @@ footer ul a:hover { color: var(--gold); padding-left: 4px; }
       </article>
 
       <article class="vehicle premium"
-        data-name="Toyota Vellfire New" data-model="AGH40 · Latest Generation" data-pax="1–6"
-        data-transfer="250" data-half="600" data-full="1200"
-        data-hours-half="4–5 Hours" data-hours-full="8–10 Hours">
+        data-name="Toyota Vellfire New" data-alt="AGH40 · Latest Generation"
+        data-model="AGH40 · Latest Generation" data-pax="1–6"
+        data-transfer="300" data-half="600" data-full="1200"
+        data-hours-half="4–5 Hours" data-hours-full="8–10 Hours"
+        data-int1="image/toyota-vellfire-agh40-interior-1.png"
+        data-int2="image/toyota-vellfire-agh40-interior-2.png"
+        data-int3="image/toyota-vellfire-agh40-interior-3.png">
         <div class="vehicle-img">
           <span class="vehicle-tag flagship">New · Flagship</span>
           <span class="vehicle-pax">1–6 PAX</span>
-          <img src="https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&fit=crop&w=900&q=80" alt="Toyota Vellfire AGH40" />
+          <img src="image/vellfire agh40.png" alt="Toyota Vellfire AGH40" />
         </div>
         <div class="vehicle-body">
           <h3>Toyota Vellfire <span style="color:var(--gold)">New</span></h3>
           <div class="model">AGH40 · Latest Generation</div>
           <div class="price-rows">
-            <div class="price-row"><div><div class="label">Transfer</div></div><div class="amount"><span class="cur">RM</span>250</div></div>
+            <div class="price-row"><div><div class="label">Transfer</div></div><div class="amount"><span class="cur">RM</span>300</div></div>
             <div class="price-row"><div><div class="label">Half-Day Tour</div><span class="hours">4–5 Hours</span></div><div class="amount"><span class="cur">RM</span>600</div></div>
             <div class="price-row"><div><div class="label">Full-Day Tour</div><span class="hours">8–10 Hours</span></div><div class="amount"><span class="cur">RM</span>1200</div></div>
           </div>
@@ -1929,19 +2071,23 @@ footer ul a:hover { color: var(--gold); padding-left: 4px; }
       </article>
 
       <article class="vehicle premium"
-        data-name="Toyota Alphard New" data-model="AGH40 · Presidential" data-pax="1–6"
-        data-transfer="300" data-half="700" data-full="1400"
-        data-hours-half="4–5 Hours" data-hours-full="8–10 Hours">
+        data-name="Toyota Alphard New" data-alt="AGH40 · Presidential"
+        data-model="AGH40 · Presidential" data-pax="1–6"
+        data-transfer="350" data-half="700" data-full="1400"
+        data-hours-half="4–5 Hours" data-hours-full="8–10 Hours"
+        data-int1="image/toyota-alphard-agh40-interior-1.png"
+        data-int2="image/toyota-alphard-agh40-interior-2.png"
+        data-int3="image/toyota-alphard-agh40-interior-3.png">
         <div class="vehicle-img">
           <span class="vehicle-tag flagship">New · Flagship</span>
           <span class="vehicle-pax">1–6 PAX</span>
-          <img src="https://images.unsplash.com/photo-1631295868223-63265b40d9e4?auto=format&fit=crop&w=900&q=80" alt="Toyota Alphard AGH40" />
+          <img src="image/alphard agh40.png" alt="Toyota Alphard AGH40" />
         </div>
         <div class="vehicle-body">
           <h3>Toyota Alphard <span style="color:var(--gold)">New</span></h3>
           <div class="model">AGH40 · Presidential</div>
           <div class="price-rows">
-            <div class="price-row"><div><div class="label">Transfer</div></div><div class="amount"><span class="cur">RM</span>300</div></div>
+            <div class="price-row"><div><div class="label">Transfer</div></div><div class="amount"><span class="cur">RM</span>350</div></div>
             <div class="price-row"><div><div class="label">Half-Day Tour</div><span class="hours">4–5 Hours</span></div><div class="amount"><span class="cur">RM</span>700</div></div>
             <div class="price-row"><div><div class="label">Full-Day Tour</div><span class="hours">8–10 Hours</span></div><div class="amount"><span class="cur">RM</span>1400</div></div>
           </div>
@@ -2016,38 +2162,34 @@ footer ul a:hover { color: var(--gold); padding-left: 4px; }
   <div class="container">
     <div class="section-head reveal">
       <div class="gold-divider"><div class="diamond"></div></div>
-      <span class="eyebrow">Customer Gallery</span>
-      <h2>Moments from our <em>clients</em></h2>
-      <p class="lead">A glimpse into the journeys we've had the privilege of being part of.</p>
+      <span class="eyebrow">Our Gallery</span>
+      <h2>Moments from our <em>gallery</em></h2>
+      <p class="lead">A visual collection of our fleet, service moments, and journeys across Langkawi.</p>
     </div>
     <div class="gallery-grid reveal-stagger">
-      <div class="gallery-item tall">
-        <img src="https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=900&q=80" alt="" />
-        <div class="gallery-caption"><div class="quote">"On time for our 6am LGK pickup. Flawless service."</div><div class="author">— Ahmad R., Kuala Lumpur</div></div>
+      <div class="gallery-item tall portrait">
+        <img src="image/customer-gallery-5.png" alt="" />
       </div>
       <div class="gallery-item wide">
-        <img src="https://images.unsplash.com/photo-1556122071-e404cb6f31c0?auto=format&fit=crop&w=900&q=80" alt="" />
-        <div class="gallery-caption"><div class="quote">"The Alphard was immaculate. Family trip to The Datai made effortless."</div><div class="author">— The Tan Family</div></div>
+        <img src="image/customer-gallery-1.png" alt="" />
       </div>
       <div class="gallery-item">
-        <img src="https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=900&q=80" alt="" />
-        <div class="gallery-caption"><div class="quote">"Pure luxury — every detail."</div><div class="author">— Sarah L.</div></div>
+        <img src="image/customer-gallery-2.png" alt="" />
       </div>
       <div class="gallery-item">
-        <img src="https://images.unsplash.com/photo-1519003722824-194d4455a60c?auto=format&fit=crop&w=900&q=80" alt="" />
-        <div class="gallery-caption"><div class="quote">"Perfect for our 10-pax team retreat in Langkawi."</div><div class="author">— Nexora Sdn Bhd</div></div>
+        <img src="image/customer-gallery-3.png" alt="" />
       </div>
       <div class="gallery-item">
-        <img src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?auto=format&fit=crop&w=900&q=80" alt="" />
-        <div class="gallery-caption"><div class="quote">"Full-day island tour — Cable Car to Kilim, unforgettable."</div><div class="author">— Mr. Chen, Singapore</div></div>
+        <img src="image/customer-gallery-4.png" alt="" />
+      </div>
+      <div class="gallery-item tall portrait">
+        <img src="image/customer-gallery-6.png" alt="" />
       </div>
       <div class="gallery-item wide">
-        <img src="https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=900&q=80" alt="" />
-        <div class="gallery-caption"><div class="quote">"Arrived at our Cenang beach wedding in the Vellfire. Guests were stunned."</div><div class="author">— Priya &amp; Raj</div></div>
+        <img src="image/customer-gallery-7.png" alt="" />
       </div>
       <div class="gallery-item">
-        <img src="https://images.unsplash.com/photo-1486754735734-325b5831c3ad?auto=format&fit=crop&w=900&q=80" alt="" />
-        <div class="gallery-caption"><div class="quote">"Executive airport transfers done right."</div><div class="author">— Datuk H.</div></div>
+        <img src="image/customer-gallery-8.png" alt="" />
       </div>
     </div>
   </div>
@@ -2178,9 +2320,26 @@ footer ul a:hover { color: var(--gold); padding-left: 4px; }
     </button>
 
     <div class="modal-head">
-      <span class="eyebrow">Book Your Journey</span>
-      <h3 id="modalVehicleName">Vehicle Name</h3>
-      <div class="modal-meta" id="modalMeta">Model · Pax</div>
+      <div class="modal-gallery">
+        <div class="modal-interior" id="modalInterior">
+          <span class="gallery-counter" id="galleryCounter">01 / 03</span>
+          <!-- 3 stacked images — active one is visible -->
+          <img data-idx="0" alt="" />
+          <img data-idx="1" alt="" />
+          <img data-idx="2" alt="" />
+        </div>
+        <div class="gallery-thumbs" id="galleryThumbs">
+          <div class="gallery-thumb active" data-idx="0"><img alt="" /></div>
+          <div class="gallery-thumb" data-idx="1"><img alt="" /></div>
+          <div class="gallery-thumb" data-idx="2"><img alt="" /></div>
+        </div>
+      </div>
+      <div class="modal-head-text">
+        <span class="eyebrow">Book Your Journey</span>
+        <h3 id="modalVehicleName">Vehicle Name</h3>
+        <div class="modal-meta" id="modalMeta">Model · Pax</div>
+        <div class="modal-alt" id="modalAlt"></div>
+      </div>
     </div>
 
     <div class="modal-body">
@@ -2390,8 +2549,15 @@ footer ul a:hover { color: var(--gold); padding-left: 4px; }
       const vehicle = btn.closest('.vehicle');
       currentVehicle = {
         name: vehicle.dataset.name,
+        alt: vehicle.dataset.alt || '',
         model: vehicle.dataset.model,
         pax: vehicle.dataset.pax,
+        extra: vehicle.dataset.extra || '',
+        interiors: [
+          vehicle.dataset.int1 || '',
+          vehicle.dataset.int2 || '',
+          vehicle.dataset.int3 || ''
+        ].filter(Boolean),
         prices: {
           transfer: vehicle.dataset.transfer,
           half: vehicle.dataset.half,
@@ -2411,15 +2577,54 @@ footer ul a:hover { color: var(--gold); padding-left: 4px; }
   function populateModal() {
     document.getElementById('modalVehicleName').textContent = currentVehicle.name;
     document.getElementById('modalMeta').textContent = currentVehicle.model + ' · ' + currentVehicle.pax + ' Pax';
+    const altEl = document.getElementById('modalAlt');
+    altEl.textContent = currentVehicle.alt ? 'Available: ' + currentVehicle.alt : '';
+    altEl.style.display = currentVehicle.alt ? 'block' : 'none';
+
+    // Populate gallery — main images and thumbnails
+    const mainImgs = document.querySelectorAll('.modal-interior img');
+    const thumbs = document.querySelectorAll('.gallery-thumb');
+    const thumbImgs = document.querySelectorAll('.gallery-thumb img');
+    currentVehicle.interiors.forEach((url, idx) => {
+      if (mainImgs[idx]) {
+        mainImgs[idx].src = url;
+        mainImgs[idx].alt = currentVehicle.name + ' interior ' + (idx + 1);
+      }
+      if (thumbImgs[idx]) {
+        thumbImgs[idx].src = url;
+        thumbImgs[idx].alt = '';
+      }
+    });
+    // Reset to first image
+    setActiveGalleryImage(0);
+
     document.getElementById('priceTransfer').textContent = currentVehicle.prices.transfer;
     document.getElementById('priceHalf').textContent = currentVehicle.prices.half;
     document.getElementById('priceFull').textContent = currentVehicle.prices.full;
     document.getElementById('hoursHalf').textContent = currentVehicle.hours.half;
     document.getElementById('hoursFull').textContent = currentVehicle.hours.full;
-    // Reset to transfer package by default
     document.querySelector('input[name="package"][value="transfer"]').checked = true;
     updateSummary();
   }
+
+  // Gallery thumbnail switching
+  function setActiveGalleryImage(idx) {
+    document.querySelectorAll('.modal-interior img').forEach((img, i) => {
+      img.classList.toggle('active', i === idx);
+    });
+    document.querySelectorAll('.gallery-thumb').forEach((t, i) => {
+      t.classList.toggle('active', i === idx);
+    });
+    const counter = document.getElementById('galleryCounter');
+    if (counter) counter.textContent = String(idx + 1).padStart(2, '0') + ' / 03';
+  }
+
+  document.querySelectorAll('.gallery-thumb').forEach(thumb => {
+    thumb.addEventListener('click', () => {
+      const idx = parseInt(thumb.dataset.idx);
+      setActiveGalleryImage(idx);
+    });
+  });
 
   function openModal() {
     modal.classList.add('open');
@@ -2446,7 +2651,12 @@ footer ul a:hover { color: var(--gold); padding-left: 4px; }
     const price = currentVehicle.prices[pkg];
     const hours = currentVehicle.hours[pkg];
     const pkgLabels = { transfer: 'Transfer Package', half: 'Half-Day Tour', full: 'Full-Day Tour' };
-    document.getElementById('summaryPkg').textContent = pkgLabels[pkg];
+    let label = pkgLabels[pkg];
+    // Show extra hour note for tour packages if available
+    if ((pkg === 'half' || pkg === 'full') && currentVehicle.extra) {
+      label += ' · +RM' + currentVehicle.extra + '/extra hr';
+    }
+    document.getElementById('summaryPkg').textContent = label;
     document.getElementById('summaryTotal').textContent = price;
     const hoursDisplayEl = document.getElementById('fHoursDisplay');
     hoursDisplayEl.value = pkg === 'transfer' ? 'One-way Transfer' : `${pkgLabels[pkg]} (${hours})`;
@@ -2501,13 +2711,25 @@ footer ul a:hover { color: var(--gold); padding-left: 4px; }
     } catch(e) {}
 
     // Build message
+    const vehicleLine = currentVehicle.alt
+      ? currentVehicle.name + ' (' + currentVehicle.alt + ')'
+      : currentVehicle.name;
+
     const lines = [
       '*🚗 SLS TRAVEL — LANGKAWI BOOKING*',
       '',
-      '*Vehicle:* ' + currentVehicle.name,
+      '*Vehicle:* ' + vehicleLine,
       '*Model:* ' + currentVehicle.model,
       '*Package:* ' + pkgLabels[pkg] + hours,
-      '*Rate:* RM ' + price,
+      '*Rate:* RM ' + price
+    ];
+
+    // Add extra hour info for tours
+    if ((pkg === 'half' || pkg === 'full') && currentVehicle.extra) {
+      lines.push('*Extra Hour:* RM ' + currentVehicle.extra);
+    }
+
+    lines.push(
       '',
       '━━━━━━━━━━━━━━━━',
       '*📋 CUSTOMER DETAILS*',
@@ -2526,7 +2748,7 @@ footer ul a:hover { color: var(--gold); padding-left: 4px; }
       '',
       '━━━━━━━━━━━━━━━━',
       'Sent via SLS Travel Langkawi website'
-    ];
+    );
     const message = encodeURIComponent(lines.join('\n'));
     const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${message}`;
     window.open(waUrl, '_blank');

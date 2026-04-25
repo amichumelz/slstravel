@@ -1502,6 +1502,22 @@ footer ul a:hover { color: var(--gold); padding-left: 4px; }
   margin-top: 12px;
   letter-spacing: 0.05em;
 }
+.modal-payment-note {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  margin-top: 10px;
+  padding: 9px 14px;
+  background: var(--gold-soft);
+  border: 1px solid var(--line-gold);
+  border-radius: var(--radius-sm);
+  font-size: 11px;
+  color: var(--ink-dim);
+  letter-spacing: 0.04em;
+}
+.modal-payment-note svg { color: var(--gold); flex-shrink: 0; }
+.modal-payment-note strong { color: var(--gold); font-weight: 600; }
 
 /* ANIMATIONS */
 @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
@@ -2494,6 +2510,10 @@ footer ul a:hover { color: var(--gold); padding-left: 4px; }
         Send Booking via WhatsApp
       </button>
       <div class="modal-note">You'll be redirected to WhatsApp with your booking details pre-filled.</div>
+      <div class="modal-payment-note">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
+        We accept <strong>Cash</strong>, <strong>QR (DuitNow / Touch 'n Go)</strong> &amp; <strong>Card</strong>
+      </div>
     </div>
 
   </div>

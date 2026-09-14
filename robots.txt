@@ -1,0 +1,6 @@
+# robots.txt for https://saifullangkawiservice.com
+User-agent: *
+Allow: /
+
+# Sitemap reference
+Sitemap: https://saifullangkawiservice.com/sitemap.xml

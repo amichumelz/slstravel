@@ -1,0 +1,21 @@
+{
+  "name": "SLS Travel Langkawi",
+  "short_name": "SLS Travel",
+  "description": "Premium chauffeur car rental, Kilim mangrove tours, island hopping & beach escapes in Langkawi.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0A0A0A",
+  "theme_color": "#0A0A0A",
+  "icons": [
+    {
+      "src": "/image/favicon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/image/favicon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

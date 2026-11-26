@@ -96,9 +96,9 @@
       ],
       "telephone": "+60146076271",
       "email": "hello@slstravel.com",
-      "priceRange": "RM 120 - RM 1200",
+      "priceRange": "RM 100 - RM 1400",
       "currenciesAccepted": "MYR",
-      "paymentAccepted": "Cash, Online Banking, Touch n Go eWallet, Credit Card",
+      "paymentAccepted": "Credit Card, Debit Card, FPX Online Banking, Apple Pay, Cash",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "Langkawi Island",
@@ -1709,6 +1709,248 @@ footer ul a:hover { color: var(--gold); padding-left: 4px; }
 .modal-payment-note svg { color: var(--gold); flex-shrink: 0; }
 .modal-payment-note strong { color: var(--gold); font-weight: 600; }
 
+/* Payment Methods Card inside Modal */
+.payment-methods-card {
+  margin-top: 20px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 14px 16px;
+}
+.pm-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-family: var(--deco);
+}
+.pm-secure {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--gold);
+}
+.pm-badges {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+.pm-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 6px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  text-align: center;
+  font-size: 11px;
+  color: var(--ink);
+  font-weight: 500;
+  transition: 0.2s ease;
+}
+.pm-badge:hover {
+  border-color: var(--gold-soft);
+  background: rgba(201, 169, 97, 0.06);
+}
+.pm-icon {
+  color: var(--gold);
+  flex-shrink: 0;
+}
+.pm-badge span {
+  line-height: 1.25;
+}
+
+/* Modal Stripe Button & Footer */
+.stripe-pay-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  position: relative;
+}
+.stripe-pay-btn.loading {
+  pointer-events: none;
+  opacity: 0.8;
+}
+.stripe-spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(10, 10, 10, 0.3);
+  border-top-color: #0A0A0A;
+  border-radius: 50%;
+  animation: stripeSpin 0.7s linear infinite;
+  display: inline-block;
+}
+@keyframes stripeSpin {
+  to { transform: rotate(360deg); }
+}
+
+.modal-stripe-badges {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 11px;
+  color: var(--gold);
+  margin-top: 10px;
+  letter-spacing: 0.04em;
+}
+
+.btn-wa-secondary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: transparent;
+  border: none;
+  color: var(--muted);
+  font-size: 12px;
+  margin-top: 14px;
+  padding: 8px;
+  width: 100%;
+  cursor: pointer;
+  transition: color 0.2s;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.btn-wa-secondary:hover {
+  color: var(--gold);
+}
+
+.booking-alert {
+  padding: 12px 14px;
+  margin-bottom: 12px;
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  line-height: 1.45;
+  background: rgba(220, 53, 69, 0.15);
+  border: 1px solid rgba(220, 53, 69, 0.4);
+  color: #ff9d9d;
+  text-align: left;
+}
+
+/* Payment Success Modal */
+.success-card {
+  max-width: 520px;
+  text-align: center;
+  padding: 40px 32px;
+}
+.success-icon-wrap {
+  width: 76px;
+  height: 76px;
+  margin: 0 auto 20px;
+  border-radius: 50%;
+  background: rgba(201, 169, 97, 0.1);
+  border: 2px solid var(--gold);
+  display: grid;
+  place-items: center;
+}
+.success-desc {
+  font-size: 14px;
+  color: var(--ink-dim);
+  line-height: 1.6;
+  margin: 14px 0 24px;
+}
+.success-ref-box {
+  background: var(--surface);
+  border: 1px solid var(--line-gold);
+  border-radius: var(--radius-sm);
+  padding: 12px 16px;
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.ref-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--muted);
+}
+.success-ref-box code {
+  font-family: monospace;
+  font-size: 12px;
+  color: var(--gold);
+  word-break: break-all;
+}
+.success-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.wa-success-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 15px;
+}
+.btn-ghost-sm {
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--muted);
+  padding: 10px 16px;
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.btn-ghost-sm:hover {
+  border-color: var(--gold);
+  color: var(--ink);
+}
+
+/* Top Notification Banner for Cancelled Payment */
+.payment-cancelled-banner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: #231811;
+  border-bottom: 1px solid rgba(201, 169, 97, 0.4);
+  color: #f7d2a5;
+  padding: 12px 20px;
+  font-size: 13px;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+}
+.banner-close {
+  background: none;
+  border: none;
+  color: #f7d2a5;
+  font-size: 22px;
+  cursor: pointer;
+  margin-left: 12px;
+  line-height: 1;
+}
+
+@media (max-width: 480px) {
+  .pm-badges {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+  }
+  .pm-badge {
+    padding: 8px 4px;
+    font-size: 10px;
+  }
+}
+
 /* ANIMATIONS */
 @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 .reveal {
@@ -2376,13 +2618,13 @@ footer ul a:hover { color: var(--gold); padding-left: 4px; }
         </div>
         <div class="timeline-step">
           <div class="circle">iii</div>
-          <h4>Send via WhatsApp</h4>
-          <p>Submit and your booking details will be sent to us on WhatsApp instantly.</p>
+          <h4>Online Payment</h4>
+          <p>Pay securely via Stripe with Cards, FPX Online Banking, or Apple Pay.</p>
         </div>
         <div class="timeline-step">
           <div class="circle">iv</div>
-          <h4>Confirmation</h4>
-          <p>Receive your booking confirmation and driver details within minutes.</p>
+          <h4>Instant Confirmation</h4>
+          <p>Receive your booking confirmation & receipt instantly on screen and email.</p>
         </div>
         <div class="timeline-step">
           <div class="circle">v</div>
@@ -2677,6 +2919,11 @@ footer ul a:hover { color: var(--gold); padding-left: 4px; }
         </div>
 
         <div class="field">
+          <label>Email Address <span style="font-weight:normal;color:var(--muted);text-transform:none;">(for Stripe receipt)</span></label>
+          <input type="email" id="fEmail" placeholder="yourname@gmail.com" autocomplete="email">
+        </div>
+
+        <div class="field">
           <label>Pickup Location <span class="req">*</span></label>
           <input type="text" id="fPickup" required placeholder="e.g. Langkawi Airport (LGK), hotel name, jetty">
         </div>
@@ -2700,21 +2947,100 @@ footer ul a:hover { color: var(--gold); padding-left: 4px; }
           <div class="total"><span class="cur">RM</span><span id="summaryTotal">0</span></div>
         </div>
 
+        <!-- Payment Methods Accepted Badge Card -->
+        <div class="payment-methods-card">
+          <div class="pm-header">
+            <span>Payment Methods</span>
+            <span class="pm-secure">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              Secure Stripe Checkout
+            </span>
+          </div>
+          <div class="pm-badges">
+            <div class="pm-badge" title="Credit / Debit Card (Visa, Mastercard, Amex)">
+              <svg class="pm-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+              <span>Cards (Credit / Debit)</span>
+            </div>
+            <div class="pm-badge" title="FPX Online Banking (Maybank, CIMB, Public Bank, etc.)">
+              <svg class="pm-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="3" y1="21" x2="21" y2="21"/><line x1="3" y1="10" x2="21" y2="10"/><polyline points="5 6 12 3 19 6"/><line x1="4" y1="10" x2="4" y2="21"/><line x1="20" y1="10" x2="20" y2="21"/><line x1="8" y1="14" x2="8" y2="17"/><line x1="12" y1="14" x2="12" y2="17"/><line x1="16" y1="14" x2="16" y2="17"/></svg>
+              <span>FPX Online Banking</span>
+            </div>
+            <div class="pm-badge" title="Apple Pay">
+              <svg class="pm-icon" width="20" height="20" viewBox="0 0 170 170" fill="currentColor"><path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.35.13-9.16-1.9-14.42-6.08-3.69-3.04-7.69-7.85-12-14.42-6-9.13-10.74-19.46-14.22-30.98-3.48-11.53-5.22-22.39-5.22-32.58 0-14.02 3.69-25.54 11.07-34.56 7.38-9.02 16.48-13.59 27.3-13.73 4.89 0 10.23 1.25 16.03 3.76 5.8 2.5 9.4 3.79 10.8 3.86 1.41-.07 5.25-1.42 11.53-4.04 6.27-2.62 11.75-3.83 16.44-3.62 14.58.74 25.54 6.26 32.88 16.56-12.72 7.74-18.96 18.28-18.72 31.63.24 10.42 4.13 19.14 11.66 26.16 7.53 7.02 16.59 10.86 27.18 11.53-2.31 7.23-5.59 14.78-9.84 22.65zM119.22 31.84c0-7.23 2.65-14.07 7.95-20.52 5.3-6.45 11.83-10.37 19.59-11.76.12 1.48.18 2.87.18 4.18 0 7.37-2.73 14.38-8.2 21.03-5.46 6.64-12.02 10.43-19.68 11.36-.12-1.35-.18-2.75-.18-4.29z"/></svg>
+              <span>Apple Pay</span>
+            </div>
+          </div>
+        </div>
+
       </form>
     </div>
 
     <div class="modal-footer">
-      <button type="button" class="btn btn-gold wa-btn" id="sendBooking">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-8.5 15.3L2 22l4.9-1.3A10 10 0 1012 2zm4.5 12c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1l-.8 1c-.1.2-.3.2-.5.1a6.5 6.5 0 01-3.2-2.8c-.2-.4.2-.4.6-1.1.1-.1.1-.3 0-.4l-.7-1.7c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.7.4-.2.3-.9.9-.9 2.2 0 1.3 1 2.6 1.1 2.8.1.2 2 3.1 4.8 4.2 1.8.7 2.5.8 3.4.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2-.1-.1-.3-.2-.5-.3z"/></svg>
-        Send Booking via WhatsApp
+      <div id="bookingAlert" class="booking-alert" style="display:none;"></div>
+      <button type="button" class="btn btn-gold stripe-pay-btn" id="sendBooking">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        <span id="btnPayText">Bayar RM <span id="btnPayAmount">0</span> dengan Stripe</span>
       </button>
-      <div class="modal-note">You'll be redirected to WhatsApp with your booking details pre-filled.</div>
-      <div class="modal-payment-note">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
-        We accept <strong>Cash</strong>, <strong>QR (DuitNow / Touch 'n Go)</strong> &amp; <strong>Card</strong>
+
+      <div class="modal-stripe-badges">
+        <span>Kad Debit/Kredit</span>
+        <span>•</span>
+        <span>FPX Online Banking</span>
+        <span>•</span>
+        <span>Apple Pay</span>
       </div>
+
+      <div class="modal-note">
+        Pembayaran disulitkan secara selamat melalui <strong>Stripe 256-bit SSL</strong>. Resit rasmi akan dihantar ke emel anda.
+      </div>
+
+      <button type="button" class="btn-wa-secondary" id="sendBookingWa">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-8.5 15.3L2 22l4.9-1.3A10 10 0 1012 2zm4.5 12c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1l-.8 1c-.1.2-.3.2-.5.1a6.5 6.5 0 01-3.2-2.8c-.2-.4.2-.4.6-1.1.1-.1.1-.3 0-.4l-.7-1.7c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.7.4-.2.3-.9.9-.9 2.2 0 1.3 1 2.6 1.1 2.8.1.2 2 3.1 4.8 4.2 1.8.7 2.5.8 3.4.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2-.1-.1-.3-.2-.5-.3z"/></svg>
+        Atau tempah terus / pertanyaan melalui WhatsApp
+      </button>
     </div>
 
+  </div>
+</div>
+
+<!-- ==================== PAYMENT CANCELLED BANNER ==================== -->
+<div id="paymentCancelledBanner" class="payment-cancelled-banner" style="display:none;">
+  <span>⚠️ Pembayaran Stripe tidak diselesaikan. Anda boleh cuba semula atau hubungi kami di WhatsApp jika memerlukan bantuan.</span>
+  <button type="button" class="banner-close" aria-label="Close" onclick="this.parentElement.style.display='none';">&times;</button>
+</div>
+
+<!-- ==================== PAYMENT SUCCESS MODAL ==================== -->
+<div class="modal-overlay" id="paymentSuccessModal" role="dialog" aria-modal="true" aria-labelledby="successTitle">
+  <div class="modal-card success-card">
+    <button class="modal-close" id="successModalClose" aria-label="Close">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+    <div class="success-body">
+      <div class="success-icon-wrap">
+        <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#C9A961" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+          <polyline points="22 4 12 14.01 9 11.01"></polyline>
+        </svg>
+      </div>
+      <span class="eyebrow" style="color:var(--gold);margin-bottom:6px;display:block;">Pembayaran Berjaya</span>
+      <h2 id="successTitle" style="font-family:var(--serif);font-size:26px;margin-bottom:10px;">Tempahan Anda Telah Disahkan!</h2>
+      <p class="success-desc">
+        Terima kasih kerana memilih <strong>SLS Travel Langkawi</strong>. Pembayaran anda melalui <strong>Stripe</strong> telah diterima. Resit rasmi telah dihantar ke emel anda.
+      </p>
+      
+      <div class="success-ref-box">
+        <span class="ref-label">No. Rujukan Stripe (Session ID):</span>
+        <code id="successSessionId">-</code>
+      </div>
+
+      <div class="success-actions">
+        <a id="btnSuccessWhatsApp" href="#" target="_blank" class="btn btn-gold wa-success-btn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-8.5 15.3L2 22l4.9-1.3A10 10 0 1012 2zm4.5 12c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1l-.8 1c-.1.2-.3.2-.5.1a6.5 6.5 0 01-3.2-2.8c-.2-.4.2-.4.6-1.1.1-.1.1-.3 0-.4l-.7-1.7c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.7.4-.2.3-.9.9-.9 2.2 0 1.3 1 2.6 1.1 2.8.1.2 2 3.1 4.8 4.2 1.8.7 2.5.8 3.4.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2-.1-.1-.3-.2-.5-.3z"/></svg>
+          Hantar Notifikasi ke WhatsApp Chauffeur
+        </a>
+        <button type="button" class="btn-ghost-sm" id="btnSuccessDone">Kembali ke Laman Web</button>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -2722,6 +3048,12 @@ footer ul a:hover { color: var(--gold); padding-left: 4px; }
   // =================== CONFIG ===================
   // Replace with your actual WhatsApp number (include country code, no + or spaces)
   const WHATSAPP_NUMBER = '60146076271';
+
+  // Stripe Checkout Endpoint (Cloudflare Worker or Vercel function)
+  // Masukkan URL Cloudflare Worker anda di sini (lihat panduan di STRIPE_SETUP_GUIDE.md):
+  const STRIPE_CONFIG = {
+    checkoutEndpoint: 'https://sls-stripe-checkout.your-subdomain.workers.dev',
+  };
 
   // =================== SCROLL REVEAL ===================
   const io = new IntersectionObserver((entries) => {
@@ -2931,15 +3263,14 @@ footer ul a:hover { color: var(--gold); padding-left: 4px; }
     }
     document.getElementById('summaryPkg').textContent = label;
     document.getElementById('summaryTotal').textContent = price;
+    const btnPayAmount = document.getElementById('btnPayAmount');
+    if (btnPayAmount) btnPayAmount.textContent = price;
     const hoursDisplayEl = document.getElementById('fHoursDisplay');
     hoursDisplayEl.value = pkg === 'transfer' ? 'One-way Transfer' : `${pkgLabels[pkg]} (${hours})`;
   }
 
-  // Send booking via WhatsApp
-  document.getElementById('sendBooking').addEventListener('click', (e) => {
-    e.preventDefault();
-
-    // Simple validation — highlight required fields
+  // Validate form fields
+  function getBookingFormData() {
     const required = ['fName', 'fPhone', 'fDate', 'fTime', 'fPickup'];
     let valid = true;
     let firstInvalid = null;
@@ -2955,13 +3286,13 @@ footer ul a:hover { color: var(--gold); padding-left: 4px; }
         el.style.boxShadow = '';
       }
     });
+
     if (!valid) {
       firstInvalid.focus();
       firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      return;
+      return null;
     }
 
-    // Gather booking details
     const pkg = document.querySelector('input[name="package"]:checked').value;
     const pkgLabels = { transfer: 'Transfer (One-way)', half: 'Half-Day Tour', full: 'Full-Day Tour' };
     const price = currentVehicle.prices[pkg];
@@ -2969,59 +3300,188 @@ footer ul a:hover { color: var(--gold); padding-left: 4px; }
 
     const name = document.getElementById('fName').value.trim();
     const phone = document.getElementById('fPhone').value.trim();
+    const email = (document.getElementById('fEmail')?.value || '').trim();
     const date = document.getElementById('fDate').value;
     const timeSelect = document.getElementById('fTime');
-    // Use the display text of the selected option (e.g. "09:00 AM") — nicer for WhatsApp
     const time = timeSelect.options[timeSelect.selectedIndex].text;
     const pax = document.getElementById('fPax').value || '1';
     const pickup = document.getElementById('fPickup').value.trim();
     const dropoff = document.getElementById('fDropoff').value.trim() || 'Not specified';
     const notes = document.getElementById('fNotes').value.trim() || 'None';
 
-    // Format date nicely (e.g. Fri, 3 May 2026)
     let formattedDate = date;
     try {
       const d = new Date(date);
       formattedDate = d.toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' });
     } catch(e) {}
 
-    // Vehicle line — include alt models if any
     const vehicleLine = currentVehicle.alt
       ? currentVehicle.name + ' (' + currentVehicle.alt + ')'
       : currentVehicle.name;
 
-    // Build simple, clean message — no emojis, no dividers, no bold markers
+    return {
+      currentVehicle,
+      pkg,
+      pkgLabels,
+      price,
+      hoursInfo,
+      name,
+      phone,
+      email,
+      date,
+      formattedDate,
+      time,
+      pax,
+      pickup,
+      dropoff,
+      notes,
+      vehicleLine
+    };
+  }
+
+  // Primary: Proceed with Stripe Payment (Card, FPX, Apple Pay)
+  document.getElementById('sendBooking').addEventListener('click', async (e) => {
+    e.preventDefault();
+    const data = getBookingFormData();
+    if (!data) return;
+
+    const alertBox = document.getElementById('bookingAlert');
+    alertBox.style.display = 'none';
+    alertBox.textContent = '';
+
+    const payBtn = document.getElementById('sendBooking');
+    const payBtnText = document.getElementById('btnPayText');
+
+    // Check if worker endpoint is still the placeholder
+    const isPlaceholderEndpoint = !STRIPE_CONFIG.checkoutEndpoint || 
+      STRIPE_CONFIG.checkoutEndpoint.includes('your-subdomain') ||
+      STRIPE_CONFIG.checkoutEndpoint.includes('example.com');
+
+    if (isPlaceholderEndpoint) {
+      alertBox.style.display = 'block';
+      alertBox.innerHTML = `<strong>Perhatian:</strong> Sila masukkan URL Cloudflare Worker anda dalam <code>STRIPE_CONFIG.checkoutEndpoint</code> (baca panduan di <em>STRIPE_SETUP_GUIDE.md</em>).<br><span style="margin-top:6px;display:inline-block;">Sementara itu, anda boleh teruskan tempahan ini melalui WhatsApp:</span>`;
+      const fallbackBtn = document.createElement('button');
+      fallbackBtn.type = 'button';
+      fallbackBtn.className = 'btn btn-gold';
+      fallbackBtn.style.marginTop = '8px';
+      fallbackBtn.style.width = '100%';
+      fallbackBtn.style.fontSize = '12px';
+      fallbackBtn.innerHTML = `Hantar Tempahan RM ${data.price} ke WhatsApp`;
+      fallbackBtn.onclick = () => sendWhatsAppBooking(data);
+      alertBox.appendChild(fallbackBtn);
+      return;
+    }
+
+    // Set loading state
+    payBtn.classList.add('loading');
+    payBtnText.innerHTML = '<span class="stripe-spinner"></span> Menghubungkan ke Stripe...';
+
+    try {
+      const res = await fetch(STRIPE_CONFIG.checkoutEndpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          vehicleName: data.currentVehicle.name,
+          vehicleModel: data.currentVehicle.model,
+          packageName: data.pkgLabels[data.pkg],
+          packageType: data.pkg,
+          amount: parseFloat(data.price),
+          currency: 'myr',
+          customerName: data.name,
+          customerPhone: data.phone,
+          customerEmail: data.email,
+          pickupDate: data.date,
+          pickupDateFormatted: data.formattedDate,
+          pickupTime: data.time,
+          pax: data.pax,
+          pickupLocation: data.pickup,
+          dropoffLocation: data.dropoff,
+          notes: data.notes,
+          successUrl: window.location.origin + window.location.pathname + '?payment=success&session_id={CHECKOUT_SESSION_ID}',
+          cancelUrl: window.location.origin + window.location.pathname + '?payment=cancelled'
+        })
+      });
+
+      const result = await res.json();
+
+      if (res.ok && result.url) {
+        // Save booking details to sessionStorage for confirmation screen
+        try {
+          sessionStorage.setItem('sls_last_booking', JSON.stringify({
+            vehicle: data.vehicleLine,
+            model: data.currentVehicle.model,
+            package: data.pkgLabels[data.pkg],
+            rate: data.price,
+            name: data.name,
+            phone: data.phone,
+            date: data.formattedDate,
+            time: data.time,
+            pickup: data.pickup,
+            dropoff: data.dropoff
+          }));
+        } catch(e) {}
+
+        // Redirect directly to Stripe Checkout
+        window.location.href = result.url;
+      } else {
+        throw new Error(result.error || 'Gagal memulakan sesi pembayaran Stripe.');
+      }
+    } catch (err) {
+      console.error('Stripe error:', err);
+      payBtn.classList.remove('loading');
+      payBtnText.innerHTML = `Bayar RM <span id="btnPayAmount">${data.price}</span> dengan Stripe`;
+      alertBox.style.display = 'block';
+      alertBox.innerHTML = `<strong>Ralat Stripe:</strong> ${err.message}<br><div style="margin-top:6px;"><a href="#" id="errorFallbackWa" style="color:var(--gold);text-decoration:underline;">Klik di sini untuk teruskan tempahan melalui WhatsApp</a>.</div>`;
+      document.getElementById('errorFallbackWa')?.addEventListener('click', (ev) => {
+        ev.preventDefault();
+        sendWhatsAppBooking(data);
+      });
+    }
+  });
+
+  // Secondary: Book / Enquire via WhatsApp directly
+  document.getElementById('sendBookingWa')?.addEventListener('click', (e) => {
+    e.preventDefault();
+    const data = getBookingFormData();
+    if (data) {
+      sendWhatsAppBooking(data);
+    }
+  });
+
+  // Helper: Build WhatsApp URL and open
+  function sendWhatsAppBooking(data) {
     const lines = [
       'SLS Travel Langkawi Booking',
       '',
-      'Vehicle: ' + vehicleLine,
-      'Model: ' + currentVehicle.model,
-      'Package: ' + pkgLabels[pkg] + hoursInfo,
-      'Rate: RM ' + price
+      'Vehicle: ' + data.vehicleLine,
+      'Model: ' + data.currentVehicle.model,
+      'Package: ' + data.pkgLabels[data.pkg] + data.hoursInfo,
+      'Rate: RM ' + data.price
     ];
 
-    if ((pkg === 'half' || pkg === 'full') && currentVehicle.extra) {
-      lines.push('Extra Hour: RM ' + currentVehicle.extra);
+    if ((data.pkg === 'half' || data.pkg === 'full') && data.currentVehicle.extra) {
+      lines.push('Extra Hour: RM ' + data.currentVehicle.extra);
     }
 
     lines.push(
       '',
-      'Name: ' + name,
-      'Phone: ' + phone,
-      'Passengers: ' + pax,
+      'Name: ' + data.name,
+      'Phone: ' + data.phone,
+      data.email ? 'Email: ' + data.email : '',
+      'Passengers: ' + data.pax,
       '',
-      'Date: ' + formattedDate,
-      'Time: ' + time,
-      'Pickup: ' + pickup,
-      'Drop-off: ' + dropoff,
+      'Date: ' + data.formattedDate,
+      'Time: ' + data.time,
+      'Pickup: ' + data.pickup,
+      'Drop-off: ' + data.dropoff,
       '',
-      'Notes: ' + notes
+      'Notes: ' + data.notes
     );
 
-    const message = encodeURIComponent(lines.join('\n'));
+    const message = encodeURIComponent(lines.filter(Boolean).join('\n'));
     const waUrl = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + message;
     window.open(waUrl, '_blank');
-  });
+  }
 
   // Reset field border on input/change
   document.querySelectorAll('#bookingForm input, #bookingForm textarea, #bookingForm select').forEach(el => {
@@ -3032,6 +3492,65 @@ footer ul a:hover { color: var(--gold); padding-left: 4px; }
     el.addEventListener('input', handler);
     el.addEventListener('change', handler);
   });
+
+  // =================== PAYMENT RETURN HANDLER ===================
+  // Check if returning from Stripe Checkout (success or cancelled)
+  (function checkPaymentStatus() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const paymentStatus = urlParams.get('payment');
+    const sessionId = urlParams.get('session_id');
+
+    if (paymentStatus === 'success') {
+      const successModal = document.getElementById('paymentSuccessModal');
+      const successClose = document.getElementById('successModalClose');
+      const successDone = document.getElementById('btnSuccessDone');
+      const refCode = document.getElementById('successSessionId');
+      const btnWhatsApp = document.getElementById('btnSuccessWhatsApp');
+
+      if (refCode) refCode.textContent = sessionId || 'CS_CONFIRMED';
+
+      // Pre-fill WhatsApp confirmation message
+      let extraWa = '';
+      try {
+        const stored = JSON.parse(sessionStorage.getItem('sls_last_booking') || '{}');
+        if (stored.name) {
+          extraWa = `\n\nButiran Tempahan:\n- Pelanggan: ${stored.name} (${stored.phone})\n- Kenderaan: ${stored.vehicle}\n- Pakej: ${stored.package} (RM ${stored.rate})\n- Tarikh: ${stored.date} @ ${stored.time}\n- Lokasi: ${stored.pickup}`;
+        }
+      } catch(e) {}
+
+      const waMsg = encodeURIComponent(
+        `SLS Travel Langkawi - PENGESAHAN BAYARAN STRIPE\n\n` +
+        `Status: Pembayaran Berjaya (Lunas)\n` +
+        `No. Rujukan: ${sessionId || 'CS_CONFIRMED'}` +
+        extraWa +
+        `\n\nSila sahkan jadual pemandu / chauffeur. Terima kasih!`
+      );
+      if (btnWhatsApp) {
+        btnWhatsApp.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${waMsg}`;
+      }
+
+      if (successModal) {
+        successModal.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+
+      const closeSuccessModal = () => {
+        successModal?.classList.remove('open');
+        document.body.style.overflow = '';
+        window.history.replaceState({}, document.title, window.location.pathname);
+      };
+      successClose?.addEventListener('click', closeSuccessModal);
+      successDone?.addEventListener('click', closeSuccessModal);
+      successModal?.addEventListener('click', (e) => { if (e.target === successModal) closeSuccessModal(); });
+
+    } else if (paymentStatus === 'cancelled') {
+      const cancelBanner = document.getElementById('paymentCancelledBanner');
+      if (cancelBanner) {
+        cancelBanner.style.display = 'flex';
+      }
+      window.history.replaceState({}, document.title, window.location.pathname);
+    }
+  })();
 </script>
 </body>
 </html>

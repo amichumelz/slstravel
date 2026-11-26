@@ -2,6 +2,7 @@
  * SLS Travel Langkawi - Stripe Checkout Cloudflare Worker
  * 
  * Supports:
+ * - Cart flow with multiple vehicle & tour bookings
  * - Credit / Debit Cards (Visa, Mastercard, Amex, UnionPay)
  * - FPX Online Banking (All Malaysian banks via Stripe FPX)
  * - Apple Pay & Google Pay (automatically displayed on supported devices)
@@ -62,35 +63,43 @@ export default {
 
       const body = await request.json();
       const {
-        vehicleName = 'Luxury Vehicle',
-        vehicleModel = '',
-        packageName = 'Standard Package',
-        packageType = 'transfer',
-        amount,
+        cartItems = [],
         customerName = '',
         customerPhone = '',
         customerEmail = '',
-        pickupDate = '',
-        pickupDateFormatted = '',
-        pickupTime = '',
-        pax = '1',
-        pickupLocation = '',
-        dropoffLocation = '',
-        notes = '',
         successUrl,
         cancelUrl,
+        // Fallback for single item format
+        vehicleName,
+        packageName,
+        amount
       } = body;
 
-      const numAmount = parseFloat(amount);
-      if (isNaN(numAmount) || numAmount <= 0) {
-        return new Response(JSON.stringify({ error: 'Jumlah pembayaran tidak sah (Invalid amount).' }), {
+      // Normalize items into an array
+      let itemsToProcess = [];
+      if (Array.isArray(cartItems) && cartItems.length > 0) {
+        itemsToProcess = cartItems;
+      } else if (amount && Number(amount) > 0) {
+        itemsToProcess = [{
+          vehicleName: vehicleName || 'Luxury Vehicle',
+          packageName: packageName || 'Standard Package',
+          price: Number(amount),
+          pickupDate: body.pickupDate || '',
+          pickupDateFormatted: body.pickupDateFormatted || body.pickupDate || '',
+          pickupTime: body.pickupTime || '',
+          pax: body.pax || '1',
+          pickupLocation: body.pickupLocation || '',
+          dropoffLocation: body.dropoffLocation || '',
+          notes: body.notes || ''
+        }];
+      }
+
+      if (itemsToProcess.length === 0) {
+        return new Response(JSON.stringify({ error: 'Your cart is empty. Please add at least one booking.' }), {
           status: 400,
           headers: { ...corsHeaders, 'Content-Type': 'application/json' },
         });
       }
-
-      // Convert MYR amount to sen / cents (e.g., RM 150 -> 15000 sen)
-      const unitAmountInSen = Math.round(numAmount * 100);
 
       // Build x-www-form-urlencoded params for Stripe API
       const params = new URLSearchParams();
@@ -101,34 +110,48 @@ export default {
       params.append('payment_method_types[1]', 'fpx');
       params.append('mode', 'payment');
 
-      // Product and pricing details
-      const itemName = `SLS Langkawi: ${vehicleName} (${packageName})`;
-      const itemDesc = `Tarikh: ${pickupDateFormatted || pickupDate} | Masa: ${pickupTime} | Penumpang: ${pax} Pax | Ambil: ${pickupLocation}`;
+      // Add each cart item as a Stripe line_item
+      let totalCalculatedAmount = 0;
+      itemsToProcess.forEach((item, index) => {
+        const itemPrice = parseFloat(item.price);
+        if (isNaN(itemPrice) || itemPrice <= 0) return;
 
-      params.append('line_items[0][price_data][currency]', 'myr');
-      params.append('line_items[0][price_data][unit_amount]', unitAmountInSen.toString());
-      params.append('line_items[0][price_data][product_data][name]', itemName);
-      params.append('line_items[0][price_data][product_data][description]', itemDesc);
-      params.append('line_items[0][quantity]', '1');
+        totalCalculatedAmount += itemPrice;
+        const unitAmountInSen = Math.round(itemPrice * 100);
+
+        const vName = item.vehicleName || 'Vehicle';
+        const pName = item.packageName || 'Package';
+        const dateStr = item.pickupDateFormatted || item.pickupDate || 'Scheduled date';
+        const timeStr = item.pickupTime || 'Scheduled time';
+        const paxStr = item.pax || '1';
+        const pickupStr = item.pickupLocation || 'Langkawi';
+
+        params.append(`line_items[${index}][price_data][currency]`, 'myr');
+        params.append(`line_items[${index}][price_data][unit_amount]`, unitAmountInSen.toString());
+        params.append(`line_items[${index}][price_data][product_data][name]`, `SLS Langkawi: ${vName} (${pName})`);
+        params.append(`line_items[${index}][price_data][product_data][description]`, `Date: ${dateStr} @ ${timeStr} | ${paxStr} Pax | Pickup: ${pickupStr}`);
+        params.append(`line_items[${index}][quantity]`, '1');
+      });
+
+      if (totalCalculatedAmount <= 0) {
+        return new Response(JSON.stringify({ error: 'Invalid total amount in cart.' }), {
+          status: 400,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        });
+      }
 
       // Customer Email for automatic Stripe Receipt
       if (customerEmail && customerEmail.includes('@')) {
         params.append('customer_email', customerEmail.trim());
       }
 
-      // Detailed metadata visible in Stripe Dashboard
-      params.append('metadata[customer_name]', customerName);
-      params.append('metadata[customer_phone]', customerPhone);
-      params.append('metadata[vehicle]', vehicleName);
-      params.append('metadata[model]', vehicleModel);
-      params.append('metadata[package]', packageName);
-      params.append('metadata[package_type]', packageType);
-      params.append('metadata[pickup_date]', pickupDate);
-      params.append('metadata[pickup_time]', pickupTime);
-      params.append('metadata[pax]', pax);
-      params.append('metadata[pickup_location]', pickupLocation);
-      params.append('metadata[dropoff_location]', dropoffLocation || '-');
-      params.append('metadata[notes]', notes || '-');
+      // Metadata stored in Stripe Dashboard
+      params.append('metadata[customer_name]', customerName || '');
+      params.append('metadata[customer_phone]', customerPhone || '');
+      params.append('metadata[items_count]', itemsToProcess.length.toString());
+
+      const itemTitles = itemsToProcess.map(it => `${it.vehicleName} (${it.packageName})`).join(', ');
+      params.append('metadata[summary]', itemTitles.substring(0, 490));
 
       // Success & Cancel URLs
       const origin = request.headers.get('origin') || 'https://saifullangkawiservice.com';
@@ -153,14 +176,13 @@ export default {
       if (!stripeRes.ok) {
         console.error('Stripe API error:', session);
         return new Response(JSON.stringify({
-          error: session.error?.message || 'Ralat semasa membuat sesi pembayaran Stripe.'
+          error: session.error?.message || 'Error creating Stripe checkout session.'
         }), {
           status: stripeRes.status,
           headers: { ...corsHeaders, 'Content-Type': 'application/json' },
         });
       }
 
-      // Return session id and Stripe checkout redirect URL
       return new Response(JSON.stringify({
         id: session.id,
         url: session.url,
@@ -171,7 +193,7 @@ export default {
 
     } catch (err) {
       console.error('Server error:', err);
-      return new Response(JSON.stringify({ error: err.message || 'Ralat pelayan dalaman.' }), {
+      return new Response(JSON.stringify({ error: err.message || 'Internal server error.' }), {
         status: 500,
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       });

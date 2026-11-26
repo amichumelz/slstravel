@@ -29,68 +29,86 @@ export default async function handler(req, res) {
   const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
   if (!stripeSecretKey) {
     return res.status(500).json({
-      error: 'STRIPE_SECRET_KEY is not configured in Vercel Environment Variables.'
+      error: 'STRIPE_SECRET_KEY is not configured in environment variables.'
     });
   }
 
   try {
     const {
-      vehicleName = 'Luxury Vehicle',
-      vehicleModel = '',
-      packageName = 'Standard Package',
-      packageType = 'transfer',
-      amount,
+      cartItems = [],
       customerName = '',
       customerPhone = '',
       customerEmail = '',
-      pickupDate = '',
-      pickupDateFormatted = '',
-      pickupTime = '',
-      pax = '1',
-      pickupLocation = '',
-      dropoffLocation = '',
-      notes = '',
       successUrl,
       cancelUrl,
+      vehicleName,
+      packageName,
+      amount
     } = req.body || {};
 
-    const numAmount = parseFloat(amount);
-    if (isNaN(numAmount) || numAmount <= 0) {
-      return res.status(400).json({ error: 'Jumlah pembayaran tidak sah.' });
+    let itemsToProcess = [];
+    if (Array.isArray(cartItems) && cartItems.length > 0) {
+      itemsToProcess = cartItems;
+    } else if (amount && Number(amount) > 0) {
+      itemsToProcess = [{
+        vehicleName: vehicleName || 'Luxury Vehicle',
+        packageName: packageName || 'Standard Package',
+        price: Number(amount),
+        pickupDate: req.body.pickupDate || '',
+        pickupDateFormatted: req.body.pickupDateFormatted || req.body.pickupDate || '',
+        pickupTime: req.body.pickupTime || '',
+        pax: req.body.pax || '1',
+        pickupLocation: req.body.pickupLocation || '',
+        dropoffLocation: req.body.dropoffLocation || '',
+        notes: req.body.notes || ''
+      }];
     }
 
-    const unitAmountInSen = Math.round(numAmount * 100);
+    if (itemsToProcess.length === 0) {
+      return res.status(400).json({ error: 'Your cart is empty. Please add at least one booking.' });
+    }
 
     const params = new URLSearchParams();
     params.append('payment_method_types[0]', 'card');
     params.append('payment_method_types[1]', 'fpx');
     params.append('mode', 'payment');
 
-    const itemName = `SLS Langkawi: ${vehicleName} (${packageName})`;
-    const itemDesc = `Tarikh: ${pickupDateFormatted || pickupDate} | Masa: ${pickupTime} | Penumpang: ${pax} Pax | Ambil: ${pickupLocation}`;
+    let totalCalculatedAmount = 0;
+    itemsToProcess.forEach((item, index) => {
+      const itemPrice = parseFloat(item.price);
+      if (isNaN(itemPrice) || itemPrice <= 0) return;
 
-    params.append('line_items[0][price_data][currency]', 'myr');
-    params.append('line_items[0][price_data][unit_amount]', unitAmountInSen.toString());
-    params.append('line_items[0][price_data][product_data][name]', itemName);
-    params.append('line_items[0][price_data][product_data][description]', itemDesc);
-    params.append('line_items[0][quantity]', '1');
+      totalCalculatedAmount += itemPrice;
+      const unitAmountInSen = Math.round(itemPrice * 100);
+
+      const vName = item.vehicleName || 'Vehicle';
+      const pName = item.packageName || 'Package';
+      const dateStr = item.pickupDateFormatted || item.pickupDate || 'Scheduled date';
+      const timeStr = item.pickupTime || 'Scheduled time';
+      const paxStr = item.pax || '1';
+      const pickupStr = item.pickupLocation || 'Langkawi';
+
+      params.append(`line_items[${index}][price_data][currency]`, 'myr');
+      params.append(`line_items[${index}][price_data][unit_amount]`, unitAmountInSen.toString());
+      params.append(`line_items[${index}][price_data][product_data][name]`, `SLS Langkawi: ${vName} (${pName})`);
+      params.append(`line_items[${index}][price_data][product_data][description]`, `Date: ${dateStr} @ ${timeStr} | ${paxStr} Pax | Pickup: ${pickupStr}`);
+      params.append(`line_items[${index}][quantity]`, '1');
+    });
+
+    if (totalCalculatedAmount <= 0) {
+      return res.status(400).json({ error: 'Invalid total amount in cart.' });
+    }
 
     if (customerEmail && customerEmail.includes('@')) {
       params.append('customer_email', customerEmail.trim());
     }
 
-    params.append('metadata[customer_name]', customerName);
-    params.append('metadata[customer_phone]', customerPhone);
-    params.append('metadata[vehicle]', vehicleName);
-    params.append('metadata[model]', vehicleModel);
-    params.append('metadata[package]', packageName);
-    params.append('metadata[package_type]', packageType);
-    params.append('metadata[pickup_date]', pickupDate);
-    params.append('metadata[pickup_time]', pickupTime);
-    params.append('metadata[pax]', pax);
-    params.append('metadata[pickup_location]', pickupLocation);
-    params.append('metadata[dropoff_location]', dropoffLocation || '-');
-    params.append('metadata[notes]', notes || '-');
+    params.append('metadata[customer_name]', customerName || '');
+    params.append('metadata[customer_phone]', customerPhone || '');
+    params.append('metadata[items_count]', itemsToProcess.length.toString());
+
+    const itemTitles = itemsToProcess.map(it => `${it.vehicleName} (${it.packageName})`).join(', ');
+    params.append('metadata[summary]', itemTitles.substring(0, 490));
 
     const host = req.headers.host || 'saifullangkawiservice.com';
     const proto = req.headers['x-forwarded-proto'] || 'https';
@@ -112,12 +130,12 @@ export default async function handler(req, res) {
 
     if (!stripeRes.ok) {
       return res.status(stripeRes.status).json({
-        error: session.error?.message || 'Ralat semasa membuat sesi pembayaran Stripe.'
+        error: session.error?.message || 'Error creating Stripe checkout session.'
       });
     }
 
     return res.status(200).json({ id: session.id, url: session.url });
   } catch (err) {
-    return res.status(500).json({ error: err.message || 'Ralat pelayan dalaman.' });
+    return res.status(500).json({ error: err.message || 'Internal server error.' });
   }
 }
